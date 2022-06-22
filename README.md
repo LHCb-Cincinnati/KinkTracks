@@ -18,5 +18,4 @@ The repository for kink signature analysis at LHCb
 | s_neutrino tau            | $\widetilde{\nu}_{\tau}$      | 1000016 |
 | Neutralino                | $\widetilde{\chi}_{1}^{0}$    | 1000022 |
 | Chargino                  | $\widetilde{\chi}_{1}^{+}$    | 1000024 |
-<p align = "center">Table 1 - table title</p>
 
