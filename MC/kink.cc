@@ -1,15 +1,6 @@
 #include "Pythia8/Pythia.h"
-#include <iostream>
-#include "TVirtualPad.h"
-#include "TApplication.h"
-#include "TH1.h"         
-#include <TH1F.h>   
-#include "TFile.h"
-#include <TCanvas.h>
-#include <TF1Convolution.h>
 #include <vector>
 #include <iostream>
-
 
 using namespace Pythia8;
 
@@ -28,6 +19,9 @@ int main() {
 
     int nEvents = pythia.mode("Main:numberOfEvents");
     int nAbort = pythia.mode("Main:timesAllowErrors");
+    // Histograms
+    Hist angel("kink angle", 10.,-180,180);
+    Hist length("kink angle", 10.,0,100);
 
     // Begin event loop.
     for (int iEvent = 0; iEvent < nEvents; ++iEvent) {
@@ -38,30 +32,23 @@ int main() {
         for (int i = 0; i < event.size(); ++i) {
             int idAbs = event[i].idAbs(); // call particles by ID
             double eta = event[i].eta(); //  eta (pseudorapidity)
-            if (event[i].id() == 1000015) { // if the particle is a stau
-                if (event[i].eta() > 2 && event[i].eta() < 5) {  // if the particle is in the LHCb eta range
+            if (idAbs == 1000015) { // if the particle is a stau
+                if (eta > 2 && eta < 5) {  // if the particle is in the LHCb eta range
                 neta_accepted++;
                 // Find the first daughter of the stau.
                 int iDau1 = event[i].daughter1();
                 int iDau2 = event[i].daughter2();
-            cout << "First daughter: " << iDau1 << " Second daughter: " << iDau2 << endl;
-            // calcalate the kink angle.
-            double kink_angle = atan((event[iDau2].y() - event[iDau1].y()) / (event[iDau2].x() - event[iDau1].x()));
+            //cout << "First daughter: " << iDau1 << " Second daughter: " << iDau2 << endl;
+            // calcalate the kink angle in degrees.
+            double kink_angle_rad = event[iDau1].phi() - event[iDau2].phi();
+            double kink_angle = kink_angle_rad * 180.0 / 3.14159;
+            angel.fill(kink_angle);
             cout << "Kink angle: " << kink_angle << endl;
             // calculate the kink length.
-            double kink_length = sqrt(pow(event[iDau2].x() - event[iDau1].x(), 2) + pow(event[iDau2].y() - event[iDau1].y(), 2));
-            cout << "Kink length: " << kink_length << endl;
             // calculate the decay length inside LHCb.
-            double dist = event[i].vDec().pAbs();  
-
-            
-
-
-
-
-
-
-
+            double dist = event[i].vDec().pAbs();
+            length.fill(dist);  
+            cout << "Decay length: " << dist << endl;
 
 
 
@@ -72,6 +59,14 @@ int main() {
     }
     // Statistics.
     pythia.stat();
+    HistPlot hpl("DecayAngle");
+    hpl.frame( "DecayAnglePlot", "Stau>tau (100 GeV)", "angle (degrees)","Entries");
+    hpl.add(angel, "h,red", "KinkAngle");
+    hpl.plot();
+    HistPlot hpl2("DecayLength");
+    hpl2.frame( "DecayLengthPlot", "Stau>tau (100 GeV)", "Length (MM)","Entries");
+    hpl2.add(length, "h,red", "DecayLength");
+    hpl2.plot();
 
     // Done.
     return 0;
