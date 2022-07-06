@@ -6,7 +6,7 @@
 # Install directory prefixes.
 PREFIX_BIN=/Users/mohamedelashri/Desktop/LHCb/pythia/bin
 PREFIX_INCLUDE=/Users/mohamedelashri/Desktop/LHCb/pythia/include
-PREFIX_LIB=/Users/mohamedelashri/Desktop/LHCb/pythia/libecho 
+PREFIX_LIB=/Users/mohamedelashri/Desktop/LHCb/pythia/lib
 PREFIX_SHARE=/Users/mohamedelashri/Desktop/LHCb/pythia/share/Pythia8
 
 # Compilation flags (see ./configure --help for further documentation).
@@ -35,11 +35,11 @@ HEPMC2_BIN=
 HEPMC2_INCLUDE=
 HEPMC2_LIB=
 
-HEPMC3_USE=false
-HEPMC3_CONFIG=
-HEPMC3_BIN=
-HEPMC3_INCLUDE=
-HEPMC3_LIB=
+HEPMC3_USE=true
+HEPMC3_CONFIG=HepMC3-config
+HEPMC3_BIN=/opt/homebrew/Cellar/hepmc3/3.2.5_1/bin/
+HEPMC3_INCLUDE=-I/opt/homebrew/Cellar/hepmc3/3.2.5_1/include
+HEPMC3_LIB=-L/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -Wl,-rpath,/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -lHepMC3
 
 LHAPDF5_USE=false
 LHAPDF5_CONFIG=
