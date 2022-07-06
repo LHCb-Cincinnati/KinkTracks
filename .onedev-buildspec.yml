@@ -6,6 +6,7 @@ jobs:
     name: Github sync
     remoteUrl: https://github.com/LHCb-Cincinnati/KinkTracks.git
     userName: MohamedElashri
+    passwordSecret: Github_onedev_Token
     withLfs: false
     force: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
@@ -13,6 +14,8 @@ jobs:
   - !ScheduleTrigger
     cronExpression: 0 0 12 1/1 * ? *
     projects: KinkTracks
+  - !BranchUpdateTrigger
+    branches: main
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
