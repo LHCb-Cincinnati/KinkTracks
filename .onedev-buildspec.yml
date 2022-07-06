@@ -4,7 +4,7 @@ jobs:
   steps:
   - !PushRepository
     name: Github sync
-    remoteUrl: https://github.com/LHCb-Cincinnati/KinkTracks.git
+    remoteUrl: https://github.com/MohamedElashri/KinkTracks.git
     userName: MohamedElashri
     passwordSecret: Github_onedev_Token
     withLfs: false
