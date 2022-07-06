@@ -1,3 +1,7 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "files.associations": {
+        "macro.C": "cpp",
+        "fitConvolution.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }

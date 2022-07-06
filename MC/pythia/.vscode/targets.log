@@ -7,97 +7,180 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-Usage: make mainXX
+Usage: make <file_name>
  
 
-# Make data base, printed on Wed Jul  6 02:23:36 2022
+# Make data base, printed on Wed Jul  6 02:23:09 2022
 
 # Variables
 
+# makefile (from `Makefile.inc', line 96)
+OPENMP_LIB = 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# makefile (from `Makefile.inc', line 106)
+HDF5_BIN = 
 # environment
 AUTO_NOTIFY_THRESHOLD = 10
 # environment
 __NIX_DARWIN_SET_ENVIRONMENT_DONE = 1
 # environment
 VSCODE_LOG_NATIVE = false
+# makefile (from `Makefile.inc', line 69)
+ROOT_CONFIG = root-config
 # environment
 NVM_INC = /Users/mohamedelashri/.nvm/versions/node/v16.13.1/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# makefile (from `Makefile.inc', line 112)
+HIGHFIVE_BIN = 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
+# makefile (from `Makefile.inc', line 44)
+LHAPDF5_USE = false
 # makefile
-CURDIR := /Users/mohamedelashri/Desktop/LHCb/KinkTracks/MC/pythia
-# makefile (from `Makefile', line 18)
+CURDIR := /Users/mohamedelashri/Desktop/LHCb/DisappTracks/MC/pythia
+# makefile (from `Makefile', line 2)
 SHELL = /usr/bin/env bash
+# makefile (from `Makefile.inc', line 77)
+GZIP_INCLUDE = 
+# makefile (from `Makefile.inc', line 86)
+MG5MES_USE = false
+# makefile (from `Makefile.inc', line 53)
+LHAPDF6_INCLUDE = 
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from `Makefile.inc', line 42)
+HEPMC3_LIB = -L/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -Wl,-rpath,/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -lHepMC3
 # environment
 _ = /usr/bin/make
+# makefile (from `Makefile.inc', line 94)
+OPENMP_BIN = 
 # environment
 XDG_CONFIG_DIRS = /Users/mohamedelashri/.nix-profile/etc/xdg:/run/current-system/sw/etc/xdg:/nix/var/nix/profiles/default/etc/xdg
-# makefile (from `Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile.inc', line 16)
+CXX_SONAME = -Wl,-dylib_install_name,@rpath/
+# makefile (from `Makefile.inc', line 18)
+OBJ_COMMON = 
+# makefile (from `Makefile.inc', line 1)
+MAKEFILE_LIST :=  Makefile Makefile.inc
+# makefile (from `Makefile.inc', line 90)
+MG5MES_LIB = 
+# makefile (from `Makefile.inc', line 63)
+RIVET_CONFIG = 
+# makefile (from `Makefile.inc', line 24)
+EVTGEN_LIB = 
 # environment
 XDG_DATA_DIRS = /Users/mohamedelashri/.nix-profile/share:/run/current-system/sw/share:/nix/var/nix/profiles/default/share
 # environment
 VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile.inc', line 35)
+HEPMC2_INCLUDE = 
+# makefile (from `Makefile.inc', line 21)
+EVTGEN_CONFIG = 
 # environment
 __CFBundleIdentifier = com.visualstudio.code.oss
 # environment
 INFOPATH = /opt/homebrew/share/info:
+# makefile (from `Makefile.inc', line 81)
+PYTHON_CONFIG = python3-config
+# makefile (from `Makefile.inc', line 99)
+MPICH_CONFIG = 
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/kt/_8dpvtks60v1dwnmpsxpzg4h0000gn/T/vscode-ipc-1fe5aefc-58b1-4a12-912f-186611f5207d.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/kt/_8dpvtks60v1dwnmpsxpzg4h0000gn/T/vscode-ipc-4f126c46-f1e3-451e-86dc-2188b6362765.sock
 # environment
 VSCODE_CWD = /
+# makefile (from `Makefile.inc', line 88)
+MG5MES_BIN = 
+# makefile (from `Makefile.inc', line 71)
+ROOT_INCLUDE = -I/opt/homebrew/Cellar/root/6.26.00/include/root
+# makefile (from `Makefile.inc', line 48)
+LHAPDF5_LIB = 
 # environment
 PATH = /opt/homebrew/lib/ruby/gems/3.1.0/bin:/opt/homebrew/opt/ruby/bin:/Users/mohamedelashri/.pyenv/shims:/opt/homebrew/opt/python@3.8/bin:/opt/homebrew/opt/python@3.8/bin:/opt/homebrew/opt/python@3.8/bin:/opt/homebrew/opt/python@3.8/bin:/Users/mohamedelashri/.nix-profile/bin:/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:/Users/mohamedelashri/.nvm/versions/node/v16.13.1/bin:/opt/homebrew/opt/python@3.8/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/mohamedelashri/.nix-profile/bin:/Users/mohamedelashri/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/Users/mohamedelashri/.fig/bin:/Users/mohamedelashri/.local/bin:/Applications/ShellHistory.app/Contents/Helpers
+# makefile (from `Makefile.inc', line 39)
+HEPMC3_CONFIG = HepMC3-config
 # environment
 AUTO_NOTIFY_EXPIRE_TIME = 8000
 # environment
 AUTO_NOTIFY_VERSION = 0.8.0
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from `Makefile.inc', line 26)
+FASTJET3_USE = false
 # environment
 MICRO_TRUECOLOR = 1
+# makefile (from `Makefile.inc', line 57)
+POWHEG_CONFIG = 
 # environment
 NIX_USER_PROFILE_DIR = /nix/var/nix/profiles/per-user/mohamedelashri
 # environment
 NVM_BIN = /Users/mohamedelashri/.nvm/versions/node/v16.13.1/bin
+# makefile (from `Makefile.inc', line 65)
+RIVET_INCLUDE = 
+# makefile (from `Makefile.inc', line 30)
+FASTJET3_LIB = 
 # environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile.inc', line 15)
+CXX_SHARED = -dynamiclib
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile.inc', line 74)
+GZIP_USE = false
+# makefile (from `Makefile.inc', line 50)
+LHAPDF6_USE = false
+# makefile (from `Makefile.inc', line 105)
+HDF5_CONFIG = 
 # environment
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Yd7IjkoTJX/Listeners
+# makefile (from `Makefile.inc', line 23)
+EVTGEN_INCLUDE = 
 # automatic
 %F = $(notdir $%)
 # environment
 DISPLAY = /private/tmp/com.apple.launchd.woGEFGz3FR/org.xquartz:0
+# makefile (from `Makefile.inc', line 83)
+PYTHON_INCLUDE = -I/opt/homebrew/Cellar/python@3.8/3.8.13/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/homebrew/Cellar/python@3.8/3.8.13/Frameworks/Python.framework/Versions/3.8/include/python3.8
 # environment
 TTY = not a tty
+# makefile (from `Makefile.inc', line 101)
+MPICH_INCLUDE = 
 # environment
 NIX_SSL_CERT_FILE = /etc/ssl/certs/ca-certificates.crt
 # environment
 VSCODE_PIPE_LOGGING = true
+# makefile (from `Makefile.inc', line 78)
+GZIP_LIB = 
 # environment
 FIG_PID = 3575
 # environment
-PWD = /Users/mohamedelashri/Desktop/LHCb/KinkTracks/MC/pythia
+PWD = /Users/mohamedelashri/Desktop/LHCb/DisappTracks/MC/pythia
+# makefile (from `Makefile.inc', line 54)
+LHAPDF6_LIB = 
+# makefile (from `Makefile.inc', line 28)
+FASTJET3_BIN = 
+# makefile (from `Makefile.inc', line 111)
+HIGHFIVE_CONFIG = 
 # environment
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# makefile (from `Makefile.inc', line 8)
+PREFIX_INCLUDE = /Users/mohamedelashri/Desktop/LHCb/pythia/include
+# makefile (from `Makefile.inc', line 41)
+HEPMC3_INCLUDE = -I/opt/homebrew/Cellar/hepmc3/3.2.5_1/include
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from `Makefile.inc', line 93)
+OPENMP_CONFIG = 
 # environment
 MANPATH = /Users/mohamedelashri/.nix-profile/share/man:/Users/mohamedelashri/.nvm/versions/node/v16.13.1/share/man:/opt/local/share/man:/opt/homebrew/share/man::
 # environment
@@ -106,6 +189,8 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 PYENV_SHELL = zsh
 # environment
 HOME = /Users/mohamedelashri
+# makefile (from `Makefile.inc', line 32)
+HEPMC2_USE = false
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
@@ -115,43 +200,84 @@ LOGNAME = mohamedelashri
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
+ 
 NVM_CD_FLAGS = -q
+# makefile (from `Makefile.inc', line 59)
+POWHEG_INCLUDE = 
+# makefile (from `Makefile.inc', line 76)
+GZIP_BIN = 
 # environment
 ZSH = /Users/mohamedelashri/.oh-my-zsh
+# makefile (from `Makefile.inc', line 52)
+LHAPDF6_BIN = 
+# makefile (from `Makefile.inc', line 68)
+ROOT_USE = true
+# makefile (from `Makefile.inc', line 36)
+HEPMC2_LIB = 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile.inc', line 60)
+POWHEG_LIB = 
+# makefile (from `Makefile.inc', line 45)
+LHAPDF5_CONFIG = 
 # environment
 XPC_FLAGS = 0x0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 29)
-CXX_COMMON := -I   -L -Wl,-rpath, -lpythia8 -ldl
+# makefile (from `Makefile.inc', line 107)
+HDF5_INCLUDE = 
+# makefile (from `Makefile', line 13)
+CXX_COMMON := -I/Users/mohamedelashri/Desktop/LHCb/pythia/include -O2 -std=c++11 -pedantic -W -Wall -Wshadow -fPIC -pthread  -L/Users/mohamedelashri/Desktop/LHCb/pythia/lib -Wl,-rpath,/Users/mohamedelashri/Desktop/LHCb/pythia/lib -lpythia8 -ldl
 # environment
 SHLVL = 1
+# makefile (from `Makefile.inc', line 72)
+ROOT_LIB = -L/opt/homebrew/Cellar/root/6.26.00/lib/root -Wl,-rpath,/opt/homebrew/Cellar/root/6.26.00/lib/root -lCore
 # environment
 NIX_PATH = darwin-config=/Users/mohamedelashri/.nixpkgs/darwin-configuration.nix:/nix/var/nix/profiles/per-user/root/channels:/Users/mohamedelashri/.nix-defexpr/channels:/Users/mohamedelashri/.nix-defexpr/channels:/Users/mohamedelashri/.nix-defexpr/channels
 # environment
 NIX_PROFILES = /nix/var/nix/profiles/default /Users/mohamedelashri/.nix-profile
-# makefile (from `Makefile', line 30)
+# makefile (from `Makefile', line 14)
 PYTHIA = $(PREFIX_LIB)/libpythia8$(LIB_SUFFIX)
+# makefile (from `Makefile.inc', line 87)
+MG5MES_CONFIG = 
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = mohamedelashri
 # makefile
 .DEFAULT_GOAL := all
+# makefile (from `Makefile.inc', line 62)
+RIVET_USE = false
+# makefile (from `Makefile.inc', line 34)
+HEPMC2_BIN = 
+# makefile (from `Makefile.inc', line 113)
+HIGHFIVE_INCLUDE = 
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile.inc', line 17)
+LIB_SUFFIX = .dylib
+# makefile (from `Makefile.inc', line 95)
+OPENMP_INCLUDE = 
+# makefile (from `Makefile.inc', line 20)
+EVTGEN_USE = false
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# makefile (from `Makefile.inc', line 66)
+RIVET_LIB = 
+# makefile (from `Makefile.inc', line 70)
+ROOT_BIN = /opt/homebrew/Cellar/root/6.26.00/bin/
+# makefile (from `Makefile.inc', line 80)
+PYTHON_USE = true
 # default
 .VARIABLES := 
+# makefile (from `Makefile.inc', line 98)
+MPICH_USE = false
 # environment
 TMPDIR = /var/folders/kt/_8dpvtks60v1dwnmpsxpzg4h0000gn/T/
 # automatic
@@ -170,47 +296,100 @@ MFLAGS = -Rrqp
 NVM_DIR = /Users/mohamedelashri/.nvm
 # environment
 XPC_SERVICE_NAME = application.com.visualstudio.code.oss.72893488.72893493
+# makefile (from `Makefile.inc', line 38)
+HEPMC3_USE = true
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+# makefile (from `Makefile.inc', line 84)
+PYTHON_LIB = 
+# makefile (from `Makefile.inc', line 102)
+MPICH_LIB = 
 # automatic
 +F = $(notdir $+)
 # environment
 HOMEBREW_REPOSITORY = /opt/homebrew
+# makefile (from `Makefile.inc', line 9)
+PREFIX_LIB = /Users/mohamedelashri/Desktop/LHCb/pythia/lib
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# makefile (from `Makefile.inc', line 56)
+POWHEG_USE = false
 # environment
 COMMAND_MODE = unix2003
+# makefile (from `Makefile.inc', line 46)
+LHAPDF5_BIN = 
+# makefile (from `Makefile.inc', line 27)
+FASTJET3_CONFIG = 
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
+# makefile (from `Makefile.inc', line 22)
+EVTGEN_BIN = 
+# makefile (from `Makefile.inc', line 13)
+CXX = g++
+# makefile (from `Makefile.inc', line 82)
+PYTHON_BIN = 
+# makefile (from `Makefile.inc', line 100)
+MPICH_BIN = 
 # environment
 EDITOR = nano
 # environment
 PAGER = less -R
 # environment
 LC_ALL = C
+# makefile (from `Makefile.inc', line 104)
+HDF5_USE = false
+# makefile (from `Makefile.inc', line 75)
+GZIP_CONFIG = 
+# makefile (from `Makefile.inc', line 7)
+PREFIX_BIN = /Users/mohamedelashri/Desktop/LHCb/pythia/bin
 # automatic
 ^F = $(notdir $^)
+# makefile (from `Makefile.inc', line 40)
+HEPMC3_BIN = /opt/homebrew/Cellar/hepmc3/3.2.5_1/bin/
+# makefile (from `Makefile.inc', line 51)
+LHAPDF6_CONFIG = 
+# makefile (from `Makefile.inc', line 47)
+LHAPDF5_INCLUDE = 
 # default
 SUFFIXES := 
+# makefile (from `Makefile.inc', line 64)
+RIVET_BIN = 
+# makefile (from `Makefile.inc', line 108)
+HDF5_LIB = 
+# makefile (from `Makefile.inc', line 89)
+MG5MES_INCLUDE = 
+# makefile (from `Makefile.inc', line 110)
+HIGHFIVE_USE = false
 # environment
 PYENV_VIRTUALENV_INIT = 1
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
+# makefile (from `Makefile.inc', line 92)
+OPENMP_USE = false
+# makefile (from `Makefile.inc', line 58)
+POWHEG_BIN = 
+# makefile (from `Makefile.inc', line 10)
+PREFIX_SHARE = /Users/mohamedelashri/Desktop/LHCb/pythia/share/Pythia8
 # environment
 LANG = C
 # environment
 TERM = 
+# makefile (from `Makefile.inc', line 114)
+HIGHFIVE_LIB = 
 # environment
- 
 VSCODE_PID = 3569
+# makefile (from `Makefile.inc', line 33)
+HEPMC2_CONFIG = 
+# makefile (from `Makefile.inc', line 29)
+FASTJET3_INCLUDE = 
 # variable set hash-table stats:
-# Load=97/1024=9%, Rehash=0, Collisions=20/209=10%
+# Load=186/1024=18%, Rehash=0, Collisions=17/231=7%
 
 # Pattern-specific Variable Values
 
@@ -219,81 +398,24 @@ VSCODE_PID = 3569
 # Directories
 
 # ../lib: could not be stat'd.
-# . (device 16777232, inode 73512517): 10 files, no impossibilities.
-# / (device 16777232, inode 2): No files, no impossibilities so far.
+# . (device 16777232, inode 64051693): 16 files, no impossibilities.
 
-# 10 files, no impossibilities in 3 directories.
+# 16 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
-main%: /libpythia8 main%.cc
-#  commands to execute (from `Makefile', line 58):
-	$(CXX) $@.cc -o $@ $(CXX_COMMON)
-	
-
-main%.so: main%Dct.cc
-#  commands to execute (from `Makefile', line 128):
-	$(CXX) $< -o $@ -w $(CXX_SHARED) $(CXX_COMMON)\
-	$(ROOT_LIB) `$(ROOT_CONFIG) --cflags`
-	
-
-main%Dct.cc: main%.h main%LinkDef.h
-#  commands to execute (from `Makefile', line 134):
-	$(error Error: $@ requires ROOT)
-	
-
-mymain%: /libpythia8 mymain%.cc
-#  commands to execute (from `Makefile', line 180):
-	$(CXX) $@.cc -o $@ $(CXX_COMMON)
-	
-
-test%: /libpythia8 test%.cc
-#  commands to execute (from `Makefile', line 184):
-	$(CXX) $@.cc -o $@ $(CXX_COMMON)
-	
-
-# 5 implicit rules, 0 (0.0%) terminal.
+# No implicit rules.
 
 # Files
 
-main85: /libpythia8 main85.cc
+/Users/mohamedelashri/Desktop/LHCb/pythia/lib/libpythia8.dylib:
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
 #  Modification time never checked.
 #  File has not been updated.
-# automatic
-# @ := main85
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
+#  commands to execute (from `Makefile', line 37):
+	$(error Error: PYTHIA must be built, please run "make"\
+	in the top PYTHIA directory)
 	
-
-# Not a target:
-main91.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main43.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 all:
 #  Phony target (prerequisite of .PHONY).
@@ -321,42 +443,9 @@ all:
 # ? := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/10=10%
-#  commands to execute (from `Makefile', line 49):
-	$(info Usage: make mainXX)
+#  commands to execute (from `Makefile', line 33):
+	$(info Usage: make <file_name>)
 	
-
-main45: /libpythia8 main45.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main45
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-# Not a target:
-main48.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 .PHONY: all clean
 #  Implicit rule search has not been done.
@@ -367,38 +456,11 @@ main48.cc:
 Makefile.inc:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-05-21 12:47:00
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-main84: /libpythia8 main84.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main84
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 123):
-	$(error Error: $@ requires FASTJET3 and HEPMC3)
-	
 
 # Not a target:
 AMSB.cc:
@@ -407,389 +469,19 @@ AMSB.cc:
 #  File has not been updated.
 
 # Not a target:
-main92.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main111: /libpythia8 main111.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main111
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 166):
-	$(CXX) $@.cc -o $@ -w $(CXX_COMMON)
-	
-
-# Not a target:
-main85.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main93: /libpythia8 main93.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main93
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 157):
-	$(error Error: $@ requires RIVET)
-	
-
-main75: /libpythia8 main75.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main75
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-# Not a target:
 .SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-main87: /libpythia8 main87.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main87
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-main88: /libpythia8 main88.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main88
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-main89: /libpythia8 main89.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main89
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 00:31:18
+#  Last modified 2022-04-20 13:20:44
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-main45.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main44: /libpythia8 main44.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
- 
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main44
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-# Not a target:
-main88.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main84.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main111.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main81: /libpythia8 main81.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main81
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-main74: /libpythia8 main74.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main74
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 114):
-	$(error Error: $@ requires FASTJET3)
-	
-
-# Not a target:
-main93.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main92.so:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main75.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main89.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main87.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main44.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main82: /libpythia8 main82.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main82
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-main48: /libpythia8 main48.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main48
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 97):
-	$(error Error: $@ requires EVTGEN)
-	
 
 .SECONDEXPANSION:
 #  Implicit rule search has not been done.
@@ -797,476 +489,36 @@ main48: /libpythia8 main48.cc
 #  File has not been updated.
 
 # Not a target:
-main81.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main41: /libpythia8 main41.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main41
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-main23: /libpythia8 main23.ccls
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 62):
-	$(CXX) $@.cc -o $@ -w $(CXX_COMMON)
-	
-
-# Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-kink: /libpythia8 kink.cc
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 196):
-	$(error Error: $@ requires ROOT)
-	
-
-# Not a target:
-main74.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main71: /libpythia8 main71.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main71
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-# Not a target:
-main23.ccls:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main82.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
+ 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 201):
-	@rm -f main[0-9][0-9]; rm -f out[0-9][0-9];\
-	rm -f main[0-9][0-9][0-9]; rm -f out[0-9][0-9][0-9];\
-	rm -f mymain[0-9][0-9]; rm -f myout[0-9][0-9];\
-	rm -f AMSB; rm -f AMSB;\
-	rm -f kink; rm -f kink;\
-	rm -f test[0-9][0-9][0-9]; rm -f *.dat;\
-	rm -f weakbosons.lhe; rm -f hist.root;\
+#  commands to execute (from `Makefile', line 51):
+	@rm -f AMSB; rm -f AMSB;\
+	rm -f *.dat; rm -f hist.root;\
 	rm -f *~; rm -f \#*; rm -f core*; rm -f *Dct.*; rm -f *.so;\
-	rm -f *.log; rm -f *plot.py; rm -f *.pcm; rm -f *.mpi;\
+	rm -f *.log; rm -f *.py; rm -f *.pcm; rm -f *.mpi;\
 	rm -f *.hepmc; rm -f *.yoda; rm -f *.root; \
-	rm -rf *.py;
-	rm -rf *.pdf
 	
 
-main42: /libpythia8 main42.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main42
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-main83: /libpythia8 main83.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main83
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-main300: /libpythia8 main300.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main300
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 175):
- 
-	$(CXX) $@.cc -o $@ $(CXX_COMMON)
-	
-
-main72: /libpythia8 main72.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main72
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 105):
-	$(error Error: $@ requires FASTJET3)
-	
-
-# Not a target:
-kink.cc:
+AMSB: /Users/mohamedelashri/Desktop/LHCb/pythia/lib/libpythia8.dylib AMSB.cc
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-
-main46: /libpythia8 main46.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main46
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 88):
-	$(error Error: $@ requires MPICH, HDF5, HIGHFIVE, and HEPMC2 or HEPMC3)
-	
-
-main280: /libpythia8 main280.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main280
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-# Not a target:
-main41.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main86: /libpythia8 main86.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main86
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-# Not a target:
-main71.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main42.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main91: /libpythia8 main91.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main91
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 143):
-	$(error Error: $@ requires ROOT)
-	
-
-# Not a target:
-main83.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main43: /libpythia8 main43.cc
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main43
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 74):
-	$(error Error: $@ requires HEPMC2 or HEPMC3)
-	
-
-# Not a target:
-main300.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-/libpythia8:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 53):
-	$(error Error: PYTHIA must be built, please run "make"\
-	in the top PYTHIA directory)
-	
-
-# Not a target:
-main72.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main46.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main280.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main86.cc:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main92: /libpythia8 main92.cc main92.so
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  Modification time never checked.
-#  File has not been updated.
-# automatic
-# @ := main92
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/9=11%
-#  commands to execute (from `Makefile', line 146):
-	$(CXX) $@.cc main92.so -o $@ -w $(CXX_COMMON) -Wl,-rpath,./\
+#  commands to execute (from `Makefile', line 43):
+	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
 	`$(ROOT_CONFIG) --cflags --glibs`
 	
 
-AMSB: /libpythia8 AMSB.cc
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 187):
-	$(CXX) $@.cc -o $@ $(CXX_COMMON)
-	
-
 # files hash-table stats:
-# Load=68/1024=7%, Rehash=0, Collisions=8/170=5%
+# Load=11/1024=1%, Rehash=0, Collisions=0/30=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -1278,6 +530,6 @@ AMSB: /libpythia8 AMSB.cc
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4074 / max = 4074 / min = 4074 / avg = 4074
 
-# Finished Make data base on Wed Jul  6 02:23:36 2022
+# Finished Make data base on Wed Jul  6 02:23:09 2022
 
  
