@@ -1,0 +1,21 @@
+version: 16
+jobs:
+- name: Github Sync
+  steps:
+  - !PushRepository
+    name: Github sync
+    remoteUrl: https://github.com/LHCb-Cincinnati/KinkTracks.git
+    userName: MohamedElashri
+    withLfs: false
+    force: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  triggers:
+  - !ScheduleTrigger
+    cronExpression: 0 0 12 1/1 * ? *
+    projects: KinkTracks
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  cpuRequirement: 250
+  memoryRequirement: 256
+  timeout: 3600
