@@ -3,3 +3,4 @@ kink
 *.txt
 */*/*.txt
 */*/*/*.txt
+*.log

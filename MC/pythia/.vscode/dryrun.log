@@ -1,7 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-Usage: make <file_name>
-make: Entering directory `/Users/mohamedelashri/Desktop/LHCb/DisappTracks/MC/pythia'
-make: Nothing to be done for `all'.
- 
-make: Leaving directory `/Users/mohamedelashri/Desktop/LHCb/DisappTracks/MC/pythia'
- 
