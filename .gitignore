@@ -1,1 +1,5 @@
-/MC/pythia/kink
+.vscode
+kink
+*.txt
+*/*/*.txt
+*/*/*/*.txt

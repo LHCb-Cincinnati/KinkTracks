@@ -46,6 +46,7 @@ int main() {
                 // Find the daughters of the stau.
                    int iDau1 = event[i].daughter1();
                    int iDau2 = event[i].daughter2();
+
             //cout << "First daughter: " << iDau1 << " Second daughter: " << iDau2 << endl;
             // calcaulte the kink angle if the first daughter is a tau
                    if (event[iDau1].idAbs() == 15) {
@@ -54,13 +55,14 @@ int main() {
                        cout << "Kink angle: " << kink_angle << endl;
                           angel.fill(kink_angle);
                    }
-            // calcualte the kink angle if the second       
+            // calcualte the kink angle if the second daughter is a tau      
                    if (event[iDau2].idAbs() == 15) {
                        double kink_angle_rad_2 = event[i].phi() - event[iDau2].phi();
                        double kink_angle_2 = kink_angle_rad_2 * 180.0 / 3.14159;
                        cout << "Kink angle: " << kink_angle_2<< endl;
                           angel.fill(kink_angle_2);
                    }                   
+
 
 
 
