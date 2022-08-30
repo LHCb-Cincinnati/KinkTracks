@@ -1,14 +1,14 @@
 
-#ifndef G4Neutralino_h 
-#define G4Neutralino_h 1 
+#ifndef G4Gravitino_h 
+#define G4Gravitino_h 1 
 
-#include "globals.hh" 
-#include "G4ios.hh" 
-#include "G4ParticleDefinition.hh"
+#include "Geant4/globals.hh"
+#include "Geant4/G4ios.hh"
+#include "Geant4/G4ParticleDefinition.hh"
 
-/** @class  G4Neutralino G4Neutralino.h  *
+/** @class  G4Gravitino G4Gravitino.h  *
  * 
- *  Define the Neutralino LSP in Geant
+ *  Define the Gravitino LSP in Geant
  * 
  *  @author Mohamed Elashri
  * 
@@ -19,16 +19,17 @@
 // ###                       Gravitino                                ###
 // ######################################################################
 
-class G4Gravitino : public G4particleDefinition
-
+class G4Gravitino : public G4ParticleDefinition
 {
-    private:
-     static G4Gravitino * theInstance ;
-        G4Gravitino() { }
-        ~G4Gravitino() { }
+ private:
+  static G4Gravitino * theInstance ;
+  G4Gravitino( ) { }
+  ~G4Gravitino( ) { }
 
-    public:    
-    static G4Gravitino * Definition() ;
-    static G4Gravitino * GravitinoDefinition() ;
-    static G4Gravitino * Gravitino() ; 
+ public:
+   static G4Gravitino* Definition();
+   static G4Gravitino* GravitinoDefinition();
+   static G4Gravitino* Gravitino();
 };
+
+#endif

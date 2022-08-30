@@ -2,7 +2,7 @@
 #include <iomanip>
 
 #include "G4Gravitino.h"
-#include "G4ParticleTable.hh"
+#include "Geant4/G4ParticleTable.hh"
 
 // ###################################################################### 
 // ###                       Gravitino                                ###
@@ -13,7 +13,7 @@ G4Gravitino* G4Gravitino::theInstance = 0 ;
 G4Gravitino * G4Gravitino:: Definition()
 {
       if (theInstance !=0) return theInstance;
-  const G4String name = "Gravitino";
+  const G4String name = "s_G";
   // search in particle table
   G4ParticleTable* pTable = G4ParticleTable::GetParticleTable();
   G4ParticleDefinition* anInstance = pTable->FindParticle(name);
@@ -29,11 +29,11 @@ G4Gravitino * G4Gravitino:: Definition()
   //             stable         lifetime    decay table
   //             shortlived      subType    anti_encoding
    anInstance = new G4ParticleDefinition(
-                 name,    200.00*CLHEP::GeV,       3.12e-13*CLHEP::GeV,         0.0, 
+                 name,    3.6e-19*CLHEP::GeV,       3.12e-13*CLHEP::GeV,         0.0, 
 		    1,              +1,             0,          
 		    0,               0,             0,             
 		    "supersymmetric",               0,             0,          1000039,
-		    false,             0.0,          NULL,
+		    true,             0.0,          NULL,
 		    false,            "Gravitino"
               );
   }
@@ -41,12 +41,6 @@ G4Gravitino * G4Gravitino:: Definition()
   return theInstance;
 }
 
-G4Gravitino * G4Gravitino::GravitinoDefinition()
-{
-  return Definition();
-}
+G4Gravitino*  G4Gravitino::GravitinoDefinition(){return Definition();}
+G4Gravitino*  G4Gravitino::Gravitino(){return Definition();}
 
-G4Gravitino * G4Gravitino::Gravitino()
-{
-  return Definition();
-}
