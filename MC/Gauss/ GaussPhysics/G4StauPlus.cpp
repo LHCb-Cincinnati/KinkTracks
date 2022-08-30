@@ -44,7 +44,7 @@ G4StauPlus * G4StauPlus::Definition()
       new G4ParticleDefinition( name , 110.00*CLHEP::GeV, 3.0e08*CLHEP::GeV, +1.*CLHEP::eplus, 
                                 1,              0,             0,
                                 0,              0,             0,
-                                "supersymmetric", 0,  0,  1000024,
+                                "supersymmetric", 0,  0,  -1000015,
                                 false,     6.68e-1*CLHEP::ns,      NULL,
                                 false, "StauPlus" );
   }
