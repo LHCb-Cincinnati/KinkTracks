@@ -60,6 +60,21 @@ m_top = 172.69
 #  Prefix.weakout, Prefix.gutout, Prefix.sqm2u, Prefix.sqm2d
 # /
 
+
+
+'''
+Lambda:  The sccale of the SUSY breaking (10000-100000 GeV / typically 10–100 TeV)
+M_mes:   Messenger mass scale > Lambda
+N_5:      The equivalent number of 5+5bar messenger fields
+tan_b:    tan(beta) he ratio (0-10)
+sgn(mu):   +/-1,  sign of Higgsino mass term (default 1)
+C_gv   >=1, The ratio of the gravitino mass to its value for a breaking scale of F_m
+M_t     Top quark pole mass
+'''
+
+
+
+
 # now set up to scan range of values for some parameter
 
 gmsb_lambda_scan_set = [0.1e5,0.5e5,1.0e5,1.5e5,2e5,3e5]
