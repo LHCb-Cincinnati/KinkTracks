@@ -43,9 +43,9 @@ G4StauMinus * G4StauMinus::Definition()
   //             shortlived      subType    anti_encoding
     anInstance = 
       new G4ParticleDefinition( name , 100.00*CLHEP::GeV, 2.73e-13*CLHEP::GeV, -1.*CLHEP::eplus, 
-                                1,              0,             0,
                                 0,              0,             0,
-                                "supersymmetric", 0,  0, 1000015,
+                                0,              0,             0,
+                                "supersymmetric", 1,  0, 1000015,
                                 false,     6.68e-1*CLHEP::ns,      NULL,
                                 false, "StauMinus" );
   }
