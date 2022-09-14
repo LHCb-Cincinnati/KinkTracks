@@ -30,7 +30,7 @@ G4Gravitino * G4Gravitino:: Definition()
   //             shortlived      subType    anti_encoding
    anInstance = new G4ParticleDefinition(
                  name,    3.6e-19*CLHEP::GeV,       3.12e-13*CLHEP::GeV,         0.0, 
-		    1,              +1,             0,          
+		    +3/2,              +1,             0,          
 		    0,               0,             0,             
 		    "supersymmetric",               0,             0,          1000039,
 		    true,             0.0,          NULL,
