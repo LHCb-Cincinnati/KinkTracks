@@ -1,8 +1,19 @@
+/*****************************************************************************\
+* (c) Copyright 2000-2020 CERN for the benefit of the LHCb Collaboration      *
+*                                                                             *
+* This software is distributed under the terms of the GNU General Public      *
+* Licence version 3 (GPL Version 3), copied verbatim in the file "COPYING".   *
+*                                                                             *
+* In applying this licence, CERN does not waive the privileges and immunities *
+* granted to it by virtue of its status as an Intergovernmental Organization  *
+* or submit itself to any jurisdiction.                                       *
+\*****************************************************************************/
+
 #include <fstream>
 #include <iomanip>
 
 #include "G4Gravitino.h"
-#include "Geant4/G4ParticleTable.hh"
+#include "G4ParticleTable.hh"
 
 // ###################################################################### 
 // ###                       Gravitino                                ###
@@ -43,4 +54,3 @@ G4Gravitino * G4Gravitino:: Definition()
 
 G4Gravitino*  G4Gravitino::GravitinoDefinition(){return Definition();}
 G4Gravitino*  G4Gravitino::Gravitino(){return Definition();}
-
