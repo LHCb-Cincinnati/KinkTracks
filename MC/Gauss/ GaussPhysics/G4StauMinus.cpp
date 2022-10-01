@@ -14,7 +14,7 @@
 #include <iomanip>
 
 #include "G4StauMinus.h"
-#include "Geant4/G4ParticleTable.hh"
+#include "G4ParticleTable.hh"
 
 // ######################################################################
 // ###                     StauMinus                                  ###
@@ -42,11 +42,11 @@ G4StauMinus * G4StauMinus::Definition()
   //             stable         lifetime    decay table
   //             shortlived      subType    anti_encoding
     anInstance = 
-      new G4ParticleDefinition( name , 100.00*CLHEP::GeV, <2.73e-13>*CLHEP::GeV, -1.*CLHEP::eplus, 
+      new G4ParticleDefinition( name , 100.00*CLHEP::GeV, 1.23e-12*CLHEP::GeV, -1.*CLHEP::eplus, 
                                 0,              0,             0,
                                 0,              0,             0,
                                 "supersymmetric", 1,  0, 1000015,
-                                false,     <6.68e-1>*CLHEP::ns,      NULL,
+                                false,     6.68e-1*CLHEP::ns,      NULL,
                                 false, "StauMinus" );
   }
   theInstance = reinterpret_cast<G4StauMinus*>(anInstance);
@@ -55,4 +55,3 @@ G4StauMinus * G4StauMinus::Definition()
 
 G4StauMinus*  G4StauMinus::StauMinusDefinition(){return Definition();}
 G4StauMinus*  G4StauMinus::StauMinus(){return Definition();}
-
