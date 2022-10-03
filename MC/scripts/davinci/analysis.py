@@ -2,9 +2,12 @@
 import sys
 import pdb
 from array import array
-
 import numpy as np
+
 #import ROOT
+#from ROOT import TFile, TTree, TH1F, TCanvas, gROOT, gStyle
+import ROOT
+from ROOT import gROOT, gStyle, TCanvas, TFile, TTree, TH1F, TH2F, TH3F, TH1D, TH2D, TH3D
 
 import GaudiPython
 from GaudiConf import IOHelper
@@ -78,6 +81,103 @@ n_gravitino = pid_list.count(1000039) # Number of gravitinos (gravitino) > (s_G)
 n_tau = pid_list.count(15) # Number of taus (tau-) > (tau_minus)
 n_a_tau = pid_list.count(-15) # Number of anti-taus (tau+) > (tau_plus)
         
+# for stau_minus_L create Eta distribution and plot it
+stau_minus_L = [particle for particle in particles if particle.particleID().pid() == 1000015]
+stau_minus_L_eta = [particle.momentum().eta() for particle in stau_minus_L]
+stau_minus_L_eta_histo = TH1F("stau_minus_L_eta_histo", "stau_minus_L_eta_histo", 10, 1.5, 5)
+for eta in stau_minus_L_eta:
+    stau_minus_L_eta_histo.Fill(eta)
+c1 = TCanvas()
+stau_minus_L_eta_histo.Draw()
+c1.Print("Distributions/stau_minus_L_eta_distribution.pdf")        
+
+
+# for stau_plus_L create Eta distribution and plot it
+stau_plus_L = [particle for particle in particles if particle.particleID().pid() == -1000015]
+stau_plus_L_eta = [particle.momentum().eta() for particle in stau_plus_L]
+stau_plus_L_eta_histo = TH1F("stau_plus_L_eta_histo", "stau_plus_L_eta_histo", 10, 1.5, 5)
+for eta in stau_plus_L_eta:
+    stau_plus_L_eta_histo.Fill(eta)
+c2 = TCanvas()
+stau_plus_L_eta_histo.Draw()
+c2.Print("Distributions/stau_plus_L_eta_distribution.pdf")
+
+#  for gravitino create Eta distribution and plot it
+gravitino = [particle for particle in particles if particle.particleID().pid() == 1000039]
+gravitino_eta = [particle.momentum().eta() for particle in gravitino]
+gravitino_eta_histo = TH1F("gravitino_eta_histo", "gravitino_eta_histo", 10, 1.5, 5)
+for eta in gravitino_eta:
+    gravitino_eta_histo.Fill(eta)
+c3 = TCanvas()
+gravitino_eta_histo.Draw()
+c3.Print("Distributions/gravitino_eta_distribution.pdf")
+
+#  for tau or anti tau create Eta distribution and plot it
+tau = [particle for particle in particles if particle.particleID().pid() == 15]
+tau_eta = [particle.momentum().eta() for particle in tau]
+tau_eta_histo = TH1F("tau_eta_histo", "tau_eta_histo", 10, 1.5, 5)
+for eta in tau_eta:
+    tau_eta_histo.Fill(eta)
+c4 = TCanvas()
+tau_eta_histo.Draw()
+c4.Print("Distributions/tau_eta_distribution.pdf")
+
+a_tau = [particle for particle in particles if particle.particleID().pid() == -15]
+a_tau_eta = [particle.momentum().eta() for particle in a_tau]
+a_tau_eta_histo = TH1F("a_tau_eta_histo", "a_tau_eta_histo", 10, 1.5, 5)
+for eta in a_tau_eta:
+    a_tau_eta_histo.Fill(eta)
+c5 = TCanvas()
+a_tau_eta_histo.Draw()
+c5.Print("Distributions/a_tau_eta_distribution.pdf")
+
+
+
+
+# for stau_minus_L and stau_Plus_L  creat decay length distribution and plot it
+stau_minus_L_decay_length = [particle.endVertices() for particle in stau_minus_L]
+stau_minus_L_decay_length_histo = TH1F("stau_minus_L_decay_length_histo", "stau_minus_L_decay_length_histo", 10, 0, 50)
+for length in stau_minus_L_decay_length:
+    stau_minus_L_decay_length_histo.Fill(length)
+c6 = TCanvas()
+stau_minus_L_decay_length_histo.Draw()
+c6.Print("Distributions/stau_minus_L_decay_length_distribution.pdf")
+
+stau_plus_L_decay_length = [particle.endVertices() for particle in stau_plus_L]
+stau_plus_L_decay_length_histo = TH1F("stau_plus_L_decay_length_histo", "stau_plus_L_decay_length_histo", 10, 0, 50)
+for length in stau_plus_L_decay_length:
+    stau_plus_L_decay_length_histo.Fill(length)
+c7 = TCanvas()
+stau_plus_L_decay_length_histo.Draw()
+c7.Print("Distributions/stau_plus_L_decay_length_distribution.pdf")
+
+# for gravitino, tau and anti-tau  creat decay length distribution and plot it
+gravitino_decay_length = [particle.endVertices() for particle in gravitino]
+gravitino_decay_length_histo = TH1F("gravitino_decay_length_histo", "gravitino_decay_length_histo", 10, 0, 50)
+for length in gravitino_decay_length:
+    gravitino_decay_length_histo.Fill(length)
+c8 = TCanvas()
+gravitino_decay_length_histo.Draw()
+c8.Print("Distributions/gravitino_decay_length_distribution.pdf")
+
+tau_decay_length = [particle.endVertices() for particle in tau]
+tau_decay_length_histo = TH1F("tau_decay_length_histo", "tau_decay_length_histo", 10, 0, 50)
+for length in tau_decay_length:
+    tau_decay_length_histo.Fill(length)
+c9 = TCanvas()
+tau_decay_length_histo.Draw()
+c9.Print("Distributions/tau_decay_length_distribution.pdf")
+
+a_tau_decay_length = [particle.endVertex() for particle in a_tau]
+a_tau_decay_length_histo = TH1F("a_tau_decay_length_histo", "a_tau_decay_length_histo", 10, 0, 50)
+for length in a_tau_decay_length:
+    a_tau_decay_length_histo.Fill(length)
+c10 = TCanvas()
+a_tau_decay_length_histo.Draw()
+c10.Print("Distributions/a_tau_decay_length_distribution.pdf")
+
+
+ '''      
 for particle in particles: 
     if particle.particleID().pid() == 1000015:       
        print("The particle is an stau-")
@@ -135,5 +235,6 @@ for particle in particles:
        else:
           print("The particle is a primary particle")
        print("Total number of gravitinos is",n_gravitino)    
+'''       
+       
 pdb.set_trace()
-#print(particles)
