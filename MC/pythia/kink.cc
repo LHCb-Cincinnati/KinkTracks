@@ -7,7 +7,7 @@
 using namespace Pythia8;
 
 int main() {
-    // Generator 
+    // Generator
     Pythia pythia;
     Event& event = pythia.event;
     // Read in pythia commands from file.
@@ -19,6 +19,8 @@ int main() {
     int ndecay2_accepted = 0 ;
     int ndecay3_accepted = 0 ;
     int ndecay4_accepted = 0 ;
+    int ndecay_g_accepted = 0 ; // number of gravitino decay accepted
+    int ndecay_s_accepted = 0 ; // number of taus decay accepted
 
 
     // Initialize.
@@ -46,6 +48,11 @@ int main() {
                 // Find the daughters of the stau.
                    int iDau1 = event[i].daughter1();
                    int iDau2 = event[i].daughter2();
+                // print which particle is the daughter
+                // Todo: understand why daughter1 and daughter2 might be staus themselves
+                   cout << "Daughter 1: " << event[iDau1].id() << endl;
+                   cout << "Daughter 2: " << event[iDau2].id() << endl;
+
 
             //cout << "First daughter: " << iDau1 << " Second daughter: " << iDau2 << endl;
             // calcaulte the kink angle if the first daughter is a tau
@@ -53,24 +60,25 @@ int main() {
                        double kink_angle_rad = event[i].phi() - event[iDau1].phi();
                        double kink_angle = kink_angle_rad * 180.0 / 3.14159;
                        cout << "Kink angle: " << kink_angle << endl;
+                       ndecay_s_accepted++;
                           angel.fill(kink_angle);
                    }
-            // calcualte the kink angle if the second daughter is a tau      
+            // calculate the kink angle if the second daughter is a tau
                    if (event[iDau2].idAbs() == 15) {
                        double kink_angle_rad_2 = event[i].phi() - event[iDau2].phi();
                        double kink_angle_2 = kink_angle_rad_2 * 180.0 / 3.14159;
                        cout << "Kink angle: " << kink_angle_2<< endl;
+                       ndecay_s_accepted++;
                           angel.fill(kink_angle_2);
-                   }                   
-
-
-
-
-
+                   }
+                   // if either daughter is a gravitino, count them as a decay product
+                   if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
+                          ndecay_g_accepted++;
+                   } 
             // calculate the decay length inside LHCb.
             //double dist = event[i].vDec().pAbs();
                    double dist = sqrt(pow(event[i].xDec(),2) + pow(event[i].yDec(),2) + pow(event[i].zDec(),2));
-                   length.fill(dist);  
+                   length.fill(dist);
                    cout << "Decay length: " << dist << endl;
 
                 // determine if stau decays between 1000 mm and 2000 mm.
@@ -94,6 +102,8 @@ int main() {
     }
     // Statistics.
     pythia.stat();
+    cout << " Number of gravitinos daughters accepted: " << ndecay_g_accepted << endl; // total number of gravitino produced
+    cout << " Number of taus daughters accepted: " << ndecay_s_accepted << endl; // total number of taus produced
     cout << endl << nEvents << " events generated. " << neta_accepted
     << " events passed eta cut." << endl;
     cout << endl << nEvents << " events generated. " << ndecay1_accepted
