@@ -13,7 +13,7 @@
 #include <iomanip>
 
 #include "G4StauPlus.h"
-#include "Geant4/G4ParticleTable.hh"
+#include "G4ParticleTable.hh"
 
 // ######################################################################
 // ###                      StauPlus                                  ###
@@ -41,7 +41,7 @@ G4StauPlus * G4StauPlus::Definition()
   //             stable         lifetime    decay table
   //             shortlived      subType    anti_encoding
     anInstance = 
-      new G4ParticleDefinition( name , 110.00*CLHEP::GeV, 3.0e08*CLHEP::GeV, +1.*CLHEP::eplus, 
+      new G4ParticleDefinition( name , 110.00*CLHEP::GeV, 1.23e-12*CLHEP::GeV, +1.*CLHEP::eplus, 
                                 0,              0,             0,
                                 0,              0,             0,
                                 "supersymmetric", -1,  0,  -1000015,
@@ -54,4 +54,3 @@ G4StauPlus * G4StauPlus::Definition()
 
 G4StauPlus*  G4StauPlus::StauPlusDefinition(){return Definition();}
 G4StauPlus*  G4StauPlus::StauPlus(){return Definition();}
-

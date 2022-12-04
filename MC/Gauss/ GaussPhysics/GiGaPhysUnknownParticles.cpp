@@ -15,9 +15,9 @@
 #include "GaudiKernel/PhysicalConstants.h"
 
 // G4
-#include "Geant4/G4UnknownParticle.hh"
-#include "Geant4/G4ProcessManager.hh"
-#include "Geant4/G4ParticleTable.hh"
+#include "G4UnknownParticle.hh"
+#include "G4ProcessManager.hh"
+#include "G4ParticleTable.hh"
 
 // local
 #include "G4BcMesonMinus.h"
