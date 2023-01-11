@@ -4,3 +4,7 @@ kink
 */*/*.txt
 */*/*/*.txt
 *.log
+MC/pythia/.gitignore
+MC/pythia/.vscode/settings.json
+
+.nova/
