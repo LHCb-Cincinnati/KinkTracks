@@ -42,7 +42,8 @@ int main() {
         for (int i = 0; i < event.size(); ++i) {
             int idAbs = event[i].idAbs(); // call particles by ID
             double eta = event[i].eta(); //  eta (pseudorapidity)
-            if (idAbs == 1000015) { // if the particle is a stau
+            
+            if (idAbs == stau || idAbs == -stau) { // if the particle is stau or anti stau
                 if (eta > 2 && eta < 5) {  // if the particle is in the LHCb eta range
                    neta_accepted++;
                 // Find the daughters of the stau.
@@ -53,23 +54,35 @@ int main() {
                    cout << "Daughter 1: " << event[iDau1].id() << endl;
                    cout << "Daughter 2: " << event[iDau2].id() << endl;
 
+                // if event[iDau1].idAbs() == 15 and not event[iDau2].idAbs() == 1000015 or -1000015
+                // then iDau1 is the tau and iDau2 is the gravitino
+                // if event[iDau2].idAbs() == 15 and not event[iDau1].idAbs() == 1000015 or -1000015
+                // then iDau2 is the tau and iDau1 is the gravitino
+                // if event[iDau1].idAbs() == 15 and event[iDau2].idAbs() == 15
+                // then both daughters are taus (which we want to write that this is invalid)
+                if (event[iDau1].idAbs() == 15 && event[iDau2].idAbs() == 15) {
+                    cout << "Both daughters are taus. This is invalid." << endl;
+                }
+
+
 
             //cout << "First daughter: " << iDau1 << " Second daughter: " << iDau2 << endl;
             // calcaulte the kink angle if the first daughter is a tau
-                   if (event[iDau1].idAbs() == 15) {
-                       double kink_angle_rad = event[i].phi() - event[iDau1].phi();
-                       double kink_angle = kink_angle_rad * 180.0 / 3.14159;
-                       cout << "Kink angle: " << kink_angle << endl;
-                       ndecay_s_accepted++;
-                          angel.fill(kink_angle);
-                   }
+                   // if the first daughter is 15 and the second daughter is not 15
+                    if (event[iDau1].idAbs() == 15 && event[iDau2].idAbs() != 15) {
+                        double kink_angle_rad = event[i].phi() - event[iDau1].phi();
+                        double kink_angle = kink_angle_rad * 180.0 / 3.14159;
+                        cout << "Kink angle: " << kink_angle << endl;
+                        ndecay_s_accepted++;
+                        angel.fill(kink_angle);
+                    }
             // calculate the kink angle if the second daughter is a tau
-                   if (event[iDau2].idAbs() == 15) {
+                   if (event[iDau2].idAbs() == 15 && event[iDau1].idAbs() != 15) {
                        double kink_angle_rad_2 = event[i].phi() - event[iDau2].phi();
                        double kink_angle_2 = kink_angle_rad_2 * 180.0 / 3.14159;
                        cout << "Kink angle: " << kink_angle_2<< endl;
                        ndecay_s_accepted++;
-                          angel.fill(kink_angle_2);
+                       angel.fill(kink_angle_2);
                    }
                    // if either daughter is a gravitino, count them as a decay product
                    if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
@@ -116,12 +129,12 @@ int main() {
     << " events passed between T1-T3 + eta ." << endl;
 
     HistPlot hpl("DecayAngle");
-    hpl.frame( "DecayAnglePlot", "Stau>tau (100 GeV)", "angle (degrees)","Entries");
-    hpl.add(angel, "h,red", "KinkAngle");
+    hpl.frame( "DecayAnglePlot", "Decay (kink) Angle Distribution", "angle (degrees)","Entries");
+    hpl.add(angel, "h,red", "Stau (100 GeV)");
     hpl.plot();
     HistPlot hpl2("DecayLength");
-    hpl2.frame( "DecayLengthPlot", "Stau>tau (100 GeV)", "Length (mm)","Entries");
-    hpl2.add(length, "h,blue", "DecayLength");
+    hpl2.frame( "DecayLengthPlot", "Decay Length Distribution", "Length (mm)","Entries");
+    hpl2.add(length, "h,blue", "Stau (100 GeV)");
     hpl2.plot();
 
     // Done.
