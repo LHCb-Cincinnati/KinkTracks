@@ -13,7 +13,8 @@
 | s-electron neutrino  | $\widetilde{\nu}_{e}$    | 1000012 |
 | s-muon                    | $\widetilde{\mu}$             | 1000013 |
 | s-muon neutrino           | $\widetilde{\nu}_{\mu}$  | 1000014 |
-| s-tau                     | $\widetilde{\tau}_{1}^{-}$    | 1000015 |
+| s-tau                     | $\widetilde{\tau}_{1}^{-}$    | -1000015 |
+| anti_s-tau                     | $\widetilde{\tau}_{1}^{+}$    | 1000015 |
 | s_neutrino tau            | $\widetilde{\nu}_{\tau}$      | 1000016 |
 | Neutralino                | $\widetilde{\chi}_{1}^{0}$    | 1000022 |
 | Chargino                  | $\widetilde{\chi}_{1}^{+}$    | 1000024 |
