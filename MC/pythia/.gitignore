@@ -4,3 +4,6 @@
 *.dat
 .idea
 .nova
+__pycache__
+*.py
+*.pdf
