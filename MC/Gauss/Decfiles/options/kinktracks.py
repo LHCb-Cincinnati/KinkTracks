@@ -101,3 +101,4 @@ SimMonitor.Members += [
     )
 ]
 # ============================================================================
+importOptions("$DECFILESROOT/options/susy.py")

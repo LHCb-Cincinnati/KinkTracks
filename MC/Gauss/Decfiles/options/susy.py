@@ -9,6 +9,7 @@ Generation().Special.addTool( PythiaProduction )
 Generation().Special.PythiaProduction.Commands += [ 
   #Set SUSY param
   "pymssm imss 1 11",  #Switch on SUSY MSSM input from an SLHA file.
+# We want to Switch on SUSY GMSB input from an SLHA file.
 
   #light higgs production
   "pysubs msel 0 0",         #full user comtrol MSUB(ISUB)=1
@@ -141,5 +142,4 @@ Generation().Special.PythiaProduction.Commands += [
 ]
 
 #Set pythia parameters common to all susy models
-#importOptions( "/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss/Comparison/stau/stau.py" )
 importOptions("$DECFILESROOT/options/stau.py")

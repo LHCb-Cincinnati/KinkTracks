@@ -9,9 +9,8 @@
 #
 # InsertPythonCode: 
 # from Configurables import LoKi__FullGenEventCut
-# from Configurables import LoKi__FullGenEventCut
 # Generation().addTool( LoKi__FullGenEventCut, "StauInAccTauInAcc" )
-#GenLevelSelection.Preambulo += [
+# GenLevelSelection.Preambulo += [
 #      "from GaudiKernel.SystemOfUnits import GeV, mrad, mm, meter"
 #    , "inAcceptance           = ( GTHETA < 400.*mrad ) & ( GP > 2.0*GeV )"
 #    , "GEVZ                   =  GFAEVX( GVZ, LoKi.Constants.InvalidDistance )"
@@ -49,7 +48,7 @@
 # from Configurables import LHCb__ParticlePropertySvc
 # EndInsertPythonCode
 #
-# ExtraOptions: kinktracks, susy
+# ExtraOptions: kinktracks
 # SUSYModel: GMSB_mtau_100GeV
 # 
 # Documentation: Staus from the GMSB model with mtau = 100 GeV
