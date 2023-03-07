@@ -12,7 +12,7 @@ valy = [float(x[1]) for x in plot]
 valy = [x/10. for x in valy]
 vale = [float(x[2]) for x in plot]
 vale = [x/10. for x in vale]
-plt.hist( valx, vale, weights = valy, histtype='bar', color='blue', label=r'Stau (100 GeV)')
+plt.hist( valx, vale, weights = valy, histtype='bar', color='blue', label=r'Stau (100 GeV) , ctau = 100 cm')
 plt.ticklabel_format(axis='y', style='sci', scilimits=(-2,3))
 plt.legend(frameon=False,loc='best')
 plt.title(r'Decay Length Distribution')

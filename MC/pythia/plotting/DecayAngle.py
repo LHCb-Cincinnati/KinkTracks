@@ -8,7 +8,7 @@ plot = [line.split() for line in plot]
 valx = [float(x[0]) for x in plot]
 valy = [float(x[1]) for x in plot]
 vale = [float(x[2]) for x in plot]
-plt.hist( valx, vale, weights = valy, histtype='bar', color='red', label=r'Stau (100 GeV)')
+plt.hist( valx, vale, weights = valy, histtype='bar', color='red', label=r'Stau (100 GeV) , ctau = 100 cm')
 plt.xlim( -1.800e+02, 1.800e+02)
 plt.ylim( 0.000e+00, 7.569e+04)
 plt.ticklabel_format(axis='y', style='sci', scilimits=(-2,3))
