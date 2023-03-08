@@ -10,7 +10,7 @@ MessageSvc().OutputLevel = VERBOSE
 importOptions("$APPCONFIGOPTS/Gauss/Beam6500GeV-md100-2017-nu1.6.py") # Sets beam energy and position
 importOptions("$APPCONFIGOPTS/Gauss/DataType-2017.py") # Sets data type
 importOptions("$APPCONFIGOPTS/Gauss/RICHRandomHits.py") # Random hits in RICH for occupancy
-importOptions("$DECFILESROOT/options/47501000.py")
+importOptions("./Gen/Decfiles/options/47501000.py")
 importOptions("$LBPYTHIA8ROOT/options/Pythia8.py") #Setting generator
 importOptions("$APPCONFIGOPTS/Gauss/G4PL_FTFP_BERT_EmNoCuts.py") # Physics simulated by Geant4
 #importOptions("$GAUSSOPTS/GenStandAlone.py") # Run only the Generation part

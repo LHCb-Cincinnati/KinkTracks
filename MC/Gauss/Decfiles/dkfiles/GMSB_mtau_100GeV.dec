@@ -16,7 +16,7 @@
 #    , "GEVZ                   =  GFAEVX( GVZ, LoKi.Constants.InvalidDistance )"
 #    , "GEVRHO                =  GFAEVX( GVRHO, LoKi.Constants.HugeDistance )"
 #    #, "DecayLengthCut         = in_range( 7800.*mm, GEVZ, 9500.*mm )"
-#    , isStau                 = ( ( '~tau_1-' == GABSID ) | ( '~tau_1+' == GABSID ) )"
+#    , "isStau                 = ( ( '~tau_1-' == GABSID ) | ( '~tau_1+' == GABSID ) )"
 #    , "isGoodTau              = ( ( 'tau-' == GABSID ) | ( 'tau+' == GABSID ) & inAcceptance)"
 #    #, "isStauWithTau = ( isStau & inAcceptance  & DecayLengthCut & ( GNINTREE( isStau, HepMC.descendants ) == 0 ) & ( GNINTREE( isGoodTau, HepMC.descendants ) > 0 ) )"
 #    , "isStauWithTau = ( isStau & inAcceptance   & ( GNINTREE( isStau, HepMC.descendants ) == 0 ) & ( GNINTREE( isGoodTau, HepMC.descendants ) > 0 ) )"
