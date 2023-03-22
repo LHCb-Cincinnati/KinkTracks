@@ -3,6 +3,7 @@ Name: mchits_all.py
 Description: This is a simple example to show how to access the MCHits containers for all subdetectors (expect Calorimeters) in a `.sim` file.
 Then, it prints the number of MCHits that belongs to staus for each subdetector.
 Author: Mohamed Elashri
+Date: 2023-03-20
 Usage: lb-run DaVinci/v45r8 python3 -i mchits_all.py
 '''
 
@@ -17,7 +18,7 @@ import GaudiPython
 import pdb
 
 LHCbApp().Simulation = True
-IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Neutralino_100GeV.sim'], clear=True)
+IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100n_long_tau.sim'], clear=True)
 
 # Configure DaVinci
 DaVinci().Simulation = True
@@ -77,7 +78,7 @@ evtSvc = appMgr.evtsvc()
 
 
 
-for i in range(10):  
+for i in range(100):   # Outer loop: iterate through the number of events we want to process
     appMgr.run(1)  
     
     # Get the MCHits containers for all subdetectors (expect Calorimeters)
@@ -91,17 +92,28 @@ for i in range(10):
 ]
 
     
-    for location in mchits_locations:
+    for location in mchits_locations: # Inner loop 1: iterate through the MCHits locations for each subdetector
         mchits = evtSvc[location]  # get the MCHits container for the subdetector
         stau_hit_count = 0
+        tau_hit_count = 0
+        pi_hit_count = 0
+        proton_hit_count = 0
         # Iterate over the MCHits
-        for mchit in mchits:
+        for mchit in mchits: # Inner loop 2: iterate over the MCHits within a specific subdetector
             mcparticle = mchit.mcParticle()
             particle_id = mcparticle.particleID().pid()
 
             if particle_id == 1000015 or particle_id == -1000015:
                 stau_hit_count += 1
+            if particle_id == 15 or particle_id == -15:
+                tau_hit_count += 1    
+            if particle_id == -211 or particle_id == 211:
+                pi_hit_count += 1   
+            if particle_id == 2212 or particle_id == -2212:
+                proton_hit_count += 1    
 
 print("Number of Stau hits: ", stau_hit_count)
-
+print("Number of Tau hits: ", tau_hit_count)
+print("Number of Pi hits: ", pi_hit_count)
+print("Number of Proton hits: ", proton_hit_count)
 pdb.set_trace()        
