@@ -6,3 +6,9 @@ MC/pythia/.gitignore
 **/*.txt
 **/settings.json
 **/log
+MC/Gauss/Data/Gausstest_MB.sim
+MC/Gauss/Data/Stau_100GeV_10n_short_tau.root
+MC/Gauss/Data/Stau_100GeV_10n_short_tau.sim
+MC/Gauss/Data/Stau_100GeV_10n.sim
+MC/Gauss/Data/Stau_100GeV_10nEv_llp.sim
+MC/Gauss/Data/Stau_100GeV_100n_Boole.xdigi
