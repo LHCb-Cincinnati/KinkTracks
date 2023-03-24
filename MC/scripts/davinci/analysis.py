@@ -1,8 +1,16 @@
-# Imports
+'''
+Author: Mohamed Elashri
+date: 2022-08-02
+Usage: lb-run DaVinci/v45r8 python3 -i analysis2.py
+'''
+
+# # import python packages
 import sys
 import pdb
-from array import array
 import numpy as np
+from array import array
+
+# Import HEP/LHCb
 
 #import ROOT
 #from ROOT import TFile, TTree, TH1F, TCanvas, gROOT, gStyle
@@ -20,20 +28,10 @@ from glob import glob
 for file in glob("*.sim"):
     IOHelper('ROOT').inputFiles([file], clear=True)   
 '''
-datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp.sim'
-datafile1 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_0-199Events.sim'
-datafile2 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_200-399Events.sim'
-datafile3 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_400-599Events.sim'
-datafile4 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_600-799Events.sim'
-datafile5 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_800-999Events.sim'
-datafile6 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_1000-1199Events.sim'
-datafile7 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_1200-1399Events.sim'
-datafile8 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_1400-1599Events.sim'
-datafile9 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_1600-1799Events.sim'
-datafile10 = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100nEv_llp_1800-1999Events.sim'
+datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_stable_with_Cut.sim'
 
 IOHelper().inputFiles([
-    datafile1,datafile2
+    datafile
 ], clear=True)
 
 # Configure DaVinci
@@ -88,38 +86,24 @@ gaudi = GaudiPython.AppMgr()
 tes   = gaudi.evtsvc()
 # let gaudi loop and run over all events
 gaudi.run(1)  
-#gaudi.evtMax = 100
-#particles = tes['MC/Particles']
-#pid_list = [particle.particleID().pid() for particle in particles]
 
-'''
-# using the PDG naming convention, more about in this link
-# https://gist.github.com/MohamedElashri/aaa9c58d9d3477b4f0fca40f7f2f91ec
-n_stau = pid_list.count(1000015) # Number of staus (stau-) > (s_tau_minus_L)
-n_a_stau = pid_list.count(-1000015) # Number of anti-staus (stau+) > (s_tau_plus_L)
-n_gravitino = pid_list.count(1000039) # Number of gravitinos (gravitino) > (s_G)
-n_tau = pid_list.count(15) # Number of taus (tau-) > (tau_minus)
-n_a_tau = pid_list.count(-15) # Number of anti-taus (tau+) > (tau_plus)
-'''
 n_stau = 0
+n_stau_in_acc = 0
 n_a_stau = 0
+n_a_stau_in_acc = 0
 n_gravitino = 0
 n_tau = 0
+n_taus_in_acc = 0
+n_ataus_in_acc = 0
 n_a_tau = 0
-evtmax = 100
+n_taus_from_staus = 0
+n_a_taus_from_staus = 0
+n_muons_from_taus = 0
+n_amuons_from_taus = 0     
+n_muons = 0
+n_amuons = 0                 
+evtmax = 99
 processed = 0
-#stau_minus_L_eta_histo = TH1F("stau_minus_L_eta_histo", "stau_minus_L_eta_histo", 10, 1.5, 5)
-#stau_plus_L_eta_histo = TH1F("stau_plus_L_eta_histo", "stau_plus_L_eta_histo", 10, 1.5, 5)
-#gravitino_eta_histo = TH1F("gravitino_eta_histo", "gravitino_eta_histo", 10, 1.5, 5)
-#tau_eta_histo = TH1F("tau_eta_histo", "tau_eta_histo", 10, 1.5, 5)
-#a_tau_eta_histo = TH1F("a_tau_eta_histo", "a_tau_eta_histo", 10, 1.5, 5)
-decay_angle_histo = TH1F("decay_angle_histo", "decay_angle_histo", 10, 0, 50)
-#c1 = TCanvas()
-#c2 = TCanvas()
-#c3 = TCanvas()
-#c4 = TCanvas()
-#c5 = TCanvas()
-c6 = TCanvas()
 
 
 
@@ -129,11 +113,6 @@ while processed < evtmax:
     gaudi.run(1)
     particles = tes['MC/Particles']
     pid_list = [particle.particleID().pid() for particle in particles]
-    #n_stau = pid_list.count(1000015) # Number of staus (stau-) > (s_tau_minus_L)
-    #n_a_stau = pid_list.count(-1000015) # Number of anti-staus (stau+) > (s_tau_plus_L)
-    #n_gravitino = pid_list.count(1000039) # Number of gravitinos (gravitino) > (s_G)
-    #n_tau = pid_list.count(15) # Number of taus (tau-) > (tau_minus)
-    #n_a_tau = pid_list.count(-15) # Number of anti-taus (tau+) > (tau_plus)
        
     for particle in particles: 
         if particle.particleID().pid() == 1000015:
@@ -144,8 +123,11 @@ while processed < evtmax:
             print("Particle momentum is", particle.momentum().pt())
             print("Primary Vertex is",particle.primaryVertex().position4vector())   
             print("Origin Vertex is",particle.originVertex().position4vector())
-            # find daughter particles of stau 
-            print
+            print("Particle eta is",particle.momentum().eta())
+            if particle.momentum().eta() > 1.9 and particle.momentum().eta() < 5.1:
+                n_stau_in_acc += 1
+            # Get information on how long the particle has been in the detector
+            
        
         if particle.particleID().pid() == -1000015:
             n_a_stau += 1 
@@ -155,6 +137,9 @@ while processed < evtmax:
             print("Particle momentum is", particle.momentum().pt())
             print("Primary Vertex is",particle.primaryVertex().position4vector())   
             print("Origin Vertex is",particle.originVertex().position4vector())
+            print("Particle eta is",particle.momentum().eta())
+            if particle.momentum().eta() > 1.9 and particle.momentum().eta() < 5.1:
+                n_a_stau_in_acc += 1
 
         if particle.particleID().pid() == 15:
             n_tau += 1
@@ -164,10 +149,15 @@ while processed < evtmax:
             print("Primary Vertex is",particle.primaryVertex().position4vector())   
             print("Origin Vertex is",particle.originVertex().position4vector())
             print("Particle mother pid is",particle.mother())
+            print("Particle eta is",particle.momentum().eta())
+            # check if the tau is in LHCb acceptance 
+            if particle.momentum().eta() > 1.9 and particle.momentum().eta() < 5.1:
+                n_taus_in_acc += 1
             if particle.originVertex().isDecay() == True:
                print("The particle is a decay product")
             else:
                print("The particle is a primary particle")
+               
 
         if particle.particleID().pid() == -15:
             n_a_tau += 1
@@ -177,6 +167,10 @@ while processed < evtmax:
             print("Primary Vertex is",particle.primaryVertex().position4vector())   
             print("Origin Vertex is",particle.originVertex().position4vector())
             print("Particle mother pid is",particle.mother())
+            print("Particle eta is",particle.momentum().eta())
+            if particle.momentum().eta() > 1.9 and particle.momentum().eta() < 5.1:
+                n_ataus_in_acc += 1
+            
             if particle.originVertex().isDecay() == True:
                print("The particle is a decay product")
             else:
@@ -194,67 +188,103 @@ while processed < evtmax:
                print("The particle is a decay product")
             else:
                print("The particle is a primary particle")
-    stau_minus_L = [particle for particle in particles if particle.particleID().pid() == 1000015]
-    stau_plus_L = [particle for particle in particles if particle.particleID().pid() == -1000015]
-    
-    gravitino_phi_angle = [particle.momentum().phi() for particle in particles if particle.particleID().pid() == 1000039]
-    tau_phi_angle = [particle.momentum().phi() for particle in particles if particle.particleID().pid() == 15]
-    atau_phi_angle = [particle.momentum().phi() for particle in particles if particle.particleID().pid() == -15]
-    #decay_angle is the difference in phi between the gravitino and the tau or gravitino and the anti-tau
-    for i in gravitino_phi_angle:
-        for j in tau_phi_angle:
-            decay_angle = abs(i-j)
-            decay_angle_histo.Fill(decay_angle)
-
-    for i in gravitino_phi_angle:
-        for j in atau_phi_angle:
-            decay_angle = abs(i-j)
-            decay_angle_histo.Fill(decay_angle)
-    c6.Print("decay_angle_histo.pdf")   
-'''
-    stau_minus_L = [particle for particle in particles if particle.particleID().pid() == 1000015]
-    stau_minus_L_eta = [particle.momentum().eta() for particle in stau_minus_L]
-    for eta in stau_minus_L_eta:
-        stau_minus_L_eta_histo.Fill(eta)
-    stau_minus_L_eta_histo.Draw()
-    c1.Print("stau_minus_L_eta_distribution.pdf")  
-
-    stau_plus_L = [particle for particle in particles if particle.particleID().pid() == -1000015]
-    stau_plus_L_eta = [particle.momentum().eta() for particle in stau_plus_L]
-    for eta in stau_plus_L_eta:
-        stau_plus_L_eta_histo.Fill(eta)
-    stau_plus_L_eta_histo.Draw()        
-    c2.Print("stau_plus_L_eta_distribution.pdf")          
-    
-    gravitino = [particle for particle in particles if particle.particleID().pid() == 1000039]
-    gravitino_eta = [particle.momentum().eta() for particle in gravitino]
-    for eta in gravitino_eta:
-        gravitino_eta_histo.Fill(eta)
-    gravitino_eta_histo.Draw()
-    c3.Print("gravitino_eta_distribution.pdf")
-        
-    tau = [particle for particle in particles if particle.particleID().pid() == 15]
-    tau_eta = [particle.momentum().eta() for particle in tau]
-    for eta in tau_eta:
-        tau_eta_histo.Fill(eta)
-    tau_eta_histo.Draw()
-    c4.Print("tau_eta_distribution.pdf")
-    
-    a_tau = [particle for particle in particles if particle.particleID().pid() == -15]
-    a_tau_eta = [particle.momentum().eta() for particle in a_tau]
-    for eta in a_tau_eta:
-        a_tau_eta_histo.Fill(eta)
-    a_tau_eta_histo.Draw()
-    c5.Print("a_tau_eta_distribution.pdf")
-'''      
-            
-      
-
+               
+        if particle.particleID().pid() == 13:
+            n_muons += 1
+            '''
+            print("The particle is muon-")
+            print("The particle ID is",particle.particleID().pid())
+            print("The particle Mass is",particle.momentum().mass())
+            print("Primary Vertex is",particle.primaryVertex().position4vector())   
+            print("Origin Vertex is",particle.originVertex().position4vector())
+            print("Particle mother pid is",particle.mother())
+            '''
+        if particle.particleID().pid() == -13:
+            n_amuons += 1
+            '''
+            print("The particle is muon+")
+            print("The particle ID is",particle.particleID().pid())
+            print("The particle Mass is",particle.momentum().mass())
+            print("Primary Vertex is",particle.primaryVertex().position4vector())   
+            print("Origin Vertex is",particle.originVertex().position4vector())
+            print("Particle mother pid is",particle.mother())
+            '''
+        # check for muons that results from tau decays
+        if particle.particleID().pid() == 13:
+            mother = particle.mother()
+            if mother and mother.particleID().pid() == 15:
+                n_muons_from_taus += 1
+        if particle.particleID().pid() == -13:
+            mother = particle.mother()
+            if mother and mother.particleID().pid() == -15:
+                n_amuons_from_taus += 1               
+        # check how many taus are result from staus decays (both staus and anti-staus)
+        if particle.particleID().pid() == 15:
+            mother = particle.mother()
+            if mother and mother.particleID().pid() == 1000015:
+                # get the particles index for this particle from particles = tes['MC/Particles'] container
+                print("The tau- particle index is",particles.index(particle))
+                n_taus_from_staus += 1
+        if particle.particleID().pid() == -15:
+            mother = particle.mother()
+            if mother and mother.particleID().pid() == -1000015:
+                print("The tau+ particle index is",particles.index(particle))
+                n_a_taus_from_staus += 1
+               
             
 print("Total number of staus is",n_stau)
+print("Total number of staus in acceptance is",n_stau_in_acc)
 print("Total number of anti-staus is",n_a_stau)
+print("Total number of anti-staus in acceptance is",n_a_stau_in_acc)
 print("Total number of taus is",n_tau)
+print("Total number of taus in acceptance is",n_taus_in_acc)
+print("Total number of taus from staus is",n_taus_from_staus)
 print("Total number of anti-taus is",n_a_tau)
+print("Total number of anti-taus in acceptance is",n_ataus_in_acc)
+print("Total number of anti-taus from anti-staus is",n_a_taus_from_staus)
+print("Total number of muons is",n_muons)
+print("Total number of anti-muons is",n_amuons)
+print("Total number of muons from taus is",n_muons_from_taus)
+print("Total number of anti-muons from anti-taus is",n_amuons_from_taus)
 print("Total number of gravitinos is",n_gravitino)     
 
-pdb.set_trace()
+# Create a histogram of the number of each particle type in the event
+particles_hist = ROOT.TH1F("particles_hist", "Number of particles in the event", 15, 0, 15)  # Change the number of bins to 15
+particles_hist.SetStats(False)
+particles_hist.SetTitle("Number of particles in the event")
+particles_hist.SetBinContent(1,n_stau)
+particles_hist.SetBinContent(2,n_stau_in_acc)
+particles_hist.SetBinContent(3,n_a_stau)
+particles_hist.SetBinContent(4,n_a_stau_in_acc)
+particles_hist.SetBinContent(5,n_tau)
+particles_hist.SetBinContent(6,n_taus_in_acc)
+particles_hist.SetBinContent(7,n_a_tau)
+particles_hist.SetBinContent(8,n_ataus_in_acc)
+particles_hist.SetBinContent(9,n_gravitino)
+particles_hist.SetBinContent(10,n_muons)
+particles_hist.SetBinContent(11,n_amuons)
+particles_hist.SetBinContent(12,n_muons_from_taus)
+particles_hist.SetBinContent(13,n_amuons_from_taus)
+particles_hist.SetBinContent(14,n_taus_from_staus)
+particles_hist.SetBinContent(15,n_a_taus_from_staus)
+particles_hist.GetXaxis().SetBinLabel(1,"staus")
+particles_hist.GetXaxis().SetBinLabel(2,"staus in acceptance")
+particles_hist.GetXaxis().SetBinLabel(3,"anti-staus")
+particles_hist.GetXaxis().SetBinLabel(4,"anti-staus in acceptance")
+particles_hist.GetXaxis().SetBinLabel(5,"taus")
+particles_hist.GetXaxis().SetBinLabel(6,"taus in acceptance")
+particles_hist.GetXaxis().SetBinLabel(7,"anti-taus")
+particles_hist.GetXaxis().SetBinLabel(8,"anti-taus in acceptance")
+particles_hist.GetXaxis().SetBinLabel(9,"gravitinos")
+particles_hist.GetXaxis().SetBinLabel(10,"muons")
+particles_hist.GetXaxis().SetBinLabel(11,"anti-muons")
+particles_hist.GetXaxis().SetBinLabel(12,"muons from taus")
+particles_hist.GetXaxis().SetBinLabel(13,"anti-muons from anti-taus")
+particles_hist.GetXaxis().SetBinLabel(14,"taus from staus")
+particles_hist.GetXaxis().SetBinLabel(15,"anti-taus from anti-staus")
+particles_hist.GetXaxis().LabelsOption("v")
+# save the histogram to a pdf file
+c1 = ROOT.TCanvas("c1", "c1", 800, 600)
+particles_hist.Draw()
+c1.Print("particles_hist.pdf")
+
