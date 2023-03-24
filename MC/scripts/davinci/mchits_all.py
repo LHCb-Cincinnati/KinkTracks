@@ -16,9 +16,13 @@ from Configurables import DaVinci, DecodeRawEvent, RawEventFormatConf, UnpackMCP
 import GaudiPython
 
 import pdb
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 LHCbApp().Simulation = True
-IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_stable_with_Cut.sim'], clear=True)
+IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_vshort_tau_with_Cut.sim'], clear=True)
 
 # Configure DaVinci
 DaVinci().Simulation = True
@@ -183,4 +187,26 @@ print("Number of Muon OT hits: ", ot_muon_hit_count)
 print("Number of Muon Rich hits: ", rich_muon_hit_count)
 print("Number of Muon chamber Muon hits: ", muon_muon_hit_count)
 
+
+# Create histogram plot of the number of hits in each subdetector
+subdetectors = ["Velo", "TT", "IT", "OT", "Muon", "Rich"]
+hits = [total_velo_hits, total_tt_hits, total_it_hits, total_ot_hits, total_muon_hits, total_rich_hits]
+plt.figure()  # Add this line to create a new figure
+plt.bar(subdetectors, hits, width=0.5, color="blue")
+plt.xlabel("Subdetector")
+plt.ylabel("Number of hits")
+plt.yscale('log')
+plt.title("Number of hits in each subdetector")
+plt.savefig("figs/pv_ctau_stau/hits_in_each_subdetector.png")
+
+# Create histogram plot of the number of hits from each particle
+particles = ["Stau", "Tau", "Muons"]
+hits = [stau_hit_count, tau_hit_count, interesting_muon_hit_count]
+plt.figure()  # Add this line to create a new figure
+plt.bar(particles, hits, width=0.5, color="red")
+plt.xlabel("Particle")
+plt.ylabel("Number of hits")
+plt.yscale('log')
+plt.title("Number of hits from each particle")
+plt.savefig("figs/pv_ctau_stau/hits_from_each_particle.png")
 pdb.set_trace()        
