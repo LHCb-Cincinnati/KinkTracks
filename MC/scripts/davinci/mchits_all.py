@@ -18,7 +18,7 @@ import GaudiPython
 import pdb
 
 LHCbApp().Simulation = True
-IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100n_long_tau.sim'], clear=True)
+IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_stable_with_Cut.sim'], clear=True)
 
 # Configure DaVinci
 DaVinci().Simulation = True
@@ -74,14 +74,31 @@ appMgr.initialize()
 
 # Get the event service
 evtSvc = appMgr.evtsvc()
-
-
-
-
-for i in range(100):   # Outer loop: iterate through the number of events we want to process
-    appMgr.run(1)  
-    
-    # Get the MCHits containers for all subdetectors (expect Calorimeters)
+gaudi = GaudiPython.AppMgr()
+evtmax = 95
+processed = 0
+total_velo_hits = 0
+total_it_hits = 0
+total_ot_hits = 0
+total_muon_hits = 0
+total_rich_hits = 0
+total_tt_hits = 0
+stau_hit_count = 0
+tau_hit_count = 0
+pi_hit_count = 0
+proton_hit_count = 0
+muons_hit_count = 0
+velo_muon_hit_count = 0
+tt_muon_hit_count = 0
+it_muon_hit_count = 0
+ot_muon_hit_count = 0
+muon_muon_hit_count = 0
+rich_muon_hit_count = 0
+total_hits = 0
+interesting_muon_hit_count= 0
+while processed < evtmax:
+    processed += 1
+    gaudi.run(1)
     mchits_locations = [
     "/Event/MC/Velo/Hits",
     "/Event/MC/TT/Hits",
@@ -90,19 +107,32 @@ for i in range(100):   # Outer loop: iterate through the number of events we wan
     "/Event/MC/Muon/Hits",
     "/Event/MC/Rich/Hits"
 ]
-
-    
     for location in mchits_locations: # Inner loop 1: iterate through the MCHits locations for each subdetector
         mchits = evtSvc[location]  # get the MCHits container for the subdetector
-        stau_hit_count = 0
-        tau_hit_count = 0
-        pi_hit_count = 0
-        proton_hit_count = 0
         # Iterate over the MCHits
         for mchit in mchits: # Inner loop 2: iterate over the MCHits within a specific subdetector
             mcparticle = mchit.mcParticle()
             particle_id = mcparticle.particleID().pid()
-
+            
+            
+            # Check total hits in each subdetector
+            if location == "/Event/MC/Velo/Hits":
+                total_velo_hits += 1
+            elif location == "/Event/MC/TT/Hits":
+                total_tt_hits += 1    
+            elif location == "/Event/MC/IT/Hits":
+                total_it_hits += 1
+            elif location == "/Event/MC/OT/Hits":
+                total_ot_hits += 1
+            elif location == "/Event/MC/Muon/Hits":
+                total_muon_hits += 1
+            elif location == "/Event/MC/Rich/Hits":
+                total_rich_hits += 1
+                
+            # Calculate total hits in all subdetectors    
+            total_hits = total_velo_hits + total_tt_hits + total_it_hits + total_ot_hits + total_muon_hits + total_rich_hits
+            
+            # Check for hits from specific particles                    
             if particle_id == 1000015 or particle_id == -1000015:
                 stau_hit_count += 1
             if particle_id == 15 or particle_id == -15:
@@ -111,9 +141,46 @@ for i in range(100):   # Outer loop: iterate through the number of events we wan
                 pi_hit_count += 1   
             if particle_id == 2212 or particle_id == -2212:
                 proton_hit_count += 1    
-
+            if particle_id == 13 or particle_id == -13:
+                muons_hit_count += 1    
+            ## Now check for which subdetector this muon hit belongs to
+                if location == "/Event/MC/Velo/Hits":
+                    velo_muon_hit_count += 1
+                elif location == "/Event/MC/TT/Hits":
+                    tt_muon_hit_count += 1
+                elif location == "/Event/MC/IT/Hits":
+                    it_muon_hit_count += 1
+                elif location == "/Event/MC/OT/Hits":
+                    ot_muon_hit_count += 1
+                elif location == "/Event/MC/Muon/Hits":
+                    muon_muon_hit_count += 1
+                elif location == "/Event/MC/Rich/Hits":
+                    rich_muon_hit_count += 1
+                # Now we want to see hits from muons which are decay products of taus
+                mother = mcparticle.mother()
+                if mother:
+                    mother_id = mother.particleID().pid()
+                    if mother_id == 15 or mother_id == -15:
+                        interesting_muon_hit_count += 1
+                            
+print("Total number of Velo hits: ", total_velo_hits)
+print("Total number of TT hits: ", total_tt_hits)
+print("Total number of IT hits: ", total_it_hits)
+print("Total number of OT hits: ", total_ot_hits)
+print("Total number of Muon hits: ", total_muon_hits)
+print("Total number of Rich hits: ", total_rich_hits)
+print("Total number of hits: ", total_hits)
 print("Number of Stau hits: ", stau_hit_count)
 print("Number of Tau hits: ", tau_hit_count)
 print("Number of Pi hits: ", pi_hit_count)
 print("Number of Proton hits: ", proton_hit_count)
+print("Number of Muons hits: ", muons_hit_count)
+print("Number of interesting Muon hits (tau decys): ", interesting_muon_hit_count)
+print("Number of Muon Velo hits: ", velo_muon_hit_count)
+print("Number of Muon TT hits: ", tt_muon_hit_count)
+print("Number of Muon IT hits: ", it_muon_hit_count)
+print("Number of Muon OT hits: ", ot_muon_hit_count)
+print("Number of Muon Rich hits: ", rich_muon_hit_count)
+print("Number of Muon chamber Muon hits: ", muon_muon_hit_count)
+
 pdb.set_trace()        
