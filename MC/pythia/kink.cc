@@ -44,7 +44,7 @@ int main() {
             double eta = event[i].eta(); //  eta (pseudorapidity)
             
             if (idAbs == stau || idAbs == -stau) { // if the particle is stau or anti stau
-                if (eta > 2 && eta < 5) {  // if the particle is in the LHCb eta range
+                if (eta > 1.9 && eta < 5.1) {  // if the particle is in the LHCb eta range
                    neta_accepted++;
                 // Find the daughters of the stau.
                    int iDau1 = event[i].daughter1();
