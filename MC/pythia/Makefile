@@ -46,8 +46,14 @@ else
 endif
 
 
-
 angle_dist: $(PYTHIA) angle_dist.cc
+ifeq ($(ROOT_USE),true)
+	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
+	 `$(ROOT_CONFIG) --cflags --glibs`
+else
+	$(error Error: $@ requires ROOT)
+endif
+len_dist: $(PYTHIA) len_dist.cc
 ifeq ($(ROOT_USE),true)
 	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
@@ -57,7 +63,7 @@ endif
 
 # Clean.
 clean:
-	@rm -f kink; rm -f kink; rm -f angle_dist; rm -rf angle_dist;\
+	@rm -f kink; rm -f kink; rm -f angle_dist; rm -rf angle_dist; rm -f len_dist; rm -rf len_dist;\
 	rm -f *.dat; rm -f hist.root;\
 	rm -f *~; rm -f \#*; rm -f core*; rm -f *Dct.*; rm -f *.so;\
 	rm -f *.log; rm -f *.py; rm -f *.pcm; rm -f *.mpi;\
