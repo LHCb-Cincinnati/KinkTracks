@@ -21,11 +21,13 @@ u_{m} \cdot u_{d}=u_{m_{x}} u_{d_{x}}+u_{m_{y}} u_{d_{y}}+u_{m_{z}} u_{d_{z}}
 $$
 
 Substituting the expressions for the Cartesian components, we get:
+
 $$
 \begin{aligned}
 u_{m} \cdot u_{d}=\sin \left(\theta_{m}\right) \cos \left(\phi_{m}\right) \sin \left(\theta_{d}\right) \cos \left(\phi_{d}\right)+\sin \left(\theta_{m}\right) \sin \left(\phi_{m}\right) \sin \left(\theta_{d}\right) \sin \left(\phi_{d}\right)+\cos \left(\theta_{m}\right) \cos \left(\theta_{d}\right)
 \end{aligned}
 $$
+
 Since $u_{m} \cdot u_{d}=\cos \left(\theta_{k i n k}\right)$, we can find the kink angle $\left(\theta_{k i n k}\right)$ by taking the inverse cosine $(\operatorname{arc} \cos )$ of the dot product:
 
 $$
