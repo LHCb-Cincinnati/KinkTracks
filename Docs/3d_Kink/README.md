@@ -36,4 +36,4 @@ $$
 \end{aligned}
 $$
 
-This equation gives use the 3D kink angle $\left(\theta_{\text {kink }}\right)$ between the mother and daughter particles using their polar and azimuthal angles. \end } \{ \text { document } \}
+This equation gives use the 3D kink angle $\left(\theta_{\text {kink }}\right)$ between the mother and daughter particles using their polar and azimuthal angles. 
