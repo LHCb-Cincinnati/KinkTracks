@@ -45,6 +45,8 @@ else
 	$(error Error: $@ requires ROOT)
 endif
 
+
+
 angle_dist: $(PYTHIA) angle_dist.cc
 ifeq ($(ROOT_USE),true)
 	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
@@ -60,4 +62,4 @@ clean:
 	rm -f *~; rm -f \#*; rm -f core*; rm -f *Dct.*; rm -f *.so;\
 	rm -f *.log; rm -f *.py; rm -f *.pcm; rm -f *.mpi;\
 	rm -f *.hepmc; rm -f *.yoda; rm -f *.root; \
-	rm -f *.py;
+	rm -f *.py; rm -f *.pdf
