@@ -42,7 +42,6 @@ int main() {
     //int nAbort = pythia.mode("Main:timesAllowErrors");
     // Histograms
     Hist angel3D("kink angle", 50., 0, 180);
-    Hist length("decay length", 100, 0, 1000);
 
     // Begin event loop.
     for (int iEvent = 0; iEvent < nEvents; ++iEvent) {
@@ -78,10 +77,6 @@ int main() {
                         if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
                             ndecay_g_accepted++;
                         }
-
-                        // Calculate the decay length
-                        double dist = event[i].vDec().pAbs();
-                        length.fill(dist);
                     }
                 }
             }
