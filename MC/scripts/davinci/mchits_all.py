@@ -8,21 +8,21 @@ Usage: lb-run DaVinci/v45r8 python3 -i mchits_all.py
 '''
 
 
-import pdb
-from typing import Self
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+
 from Gaudi.Configuration import *
 from GaudiConf import IOHelper
 from Configurables import LHCbApp, ApplicationMgr, GaudiSequencer
 from Configurables import DaVinci, DecodeRawEvent, RawEventFormatConf, UnpackMCParticle, UnpackMCVertex
 import GaudiPython
 
+import pdb
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 
 LHCbApp().Simulation = True
-IOHelper().inputFiles(['file_name.sim'], clear=True)
+IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_vshort_tau_with_Cut.sim'], clear=True)
 
 # Configure DaVinci
 DaVinci().Simulation = True
@@ -100,7 +100,6 @@ muon_muon_hit_count = 0
 rich_muon_hit_count = 0
 total_hits = 0
 interesting_muon_hit_count= 0
-
 while processed < evtmax:
     processed += 1
     gaudi.run(1)
@@ -112,24 +111,14 @@ while processed < evtmax:
     "/Event/MC/Muon/Hits",
     "/Event/MC/Rich/Hits"
 ]
-    
-    ''' 
-    The following code snippet does the following:
-    1. Iterate through the MCHits locations for each subdetector
-    2. Get the MCHits container for the subdetector
-    3. Iterate over the MCHits within a specific subdetector
-    4. Get the MCParticle associated with the MCHit
-    5. Get the particle ID of the MCParticle
-    6. If the MCHit is in the Velo, TT, IT, OT, Muon, or RICH, count the MCHit as a hit for that subdetector
-    '''
-
     for location in mchits_locations: # Inner loop 1: iterate through the MCHits locations for each subdetector
         mchits = evtSvc[location]  # get the MCHits container for the subdetector
         # Iterate over the MCHits
         for mchit in mchits: # Inner loop 2: iterate over the MCHits within a specific subdetector
             mcparticle = mchit.mcParticle()
             particle_id = mcparticle.particleID().pid()
-
+            
+            
             # Check total hits in each subdetector
             if location == "/Event/MC/Velo/Hits":
                 total_velo_hits += 1
@@ -143,30 +132,10 @@ while processed < evtmax:
                 total_muon_hits += 1
             elif location == "/Event/MC/Rich/Hits":
                 total_rich_hits += 1
-            else:
-                Self.warning("Unexpected location: " + location)
                 
             # Calculate total hits in all subdetectors    
             total_hits = total_velo_hits + total_tt_hits + total_it_hits + total_ot_hits + total_muon_hits + total_rich_hits
             
-            '''
-             The code below does the following:
-            1. get the list of all files in the current directory
-            2. loop over all files and get the list of all events in the file
-            3. loop over all events and get the list of all particles in the event
-            4. loop over all particles and check if they are the ones we are looking for (stau, tau, pi, proton, muon)
-            5. print the results 
-
-            '''
-
-            # This code counts the number of hits from specific particles in the detector
-            # The particle_id variable is used to identify the particle type
-            # The stau_hit_count variable counts the number of hits from staus
-            # The tau_hit_count variable counts the number of hits from taus
-            # The pi_hit_count variable counts the number of hits from pions
-            # The proton_hit_count variable counts the number of hits from protons
-            # The muons_hit_count variable counts the number of hits from muons
-
             # Check for hits from specific particles                    
             if particle_id == 1000015 or particle_id == -1000015:
                 stau_hit_count += 1
@@ -179,26 +148,18 @@ while processed < evtmax:
             if particle_id == 13 or particle_id == -13:
                 muons_hit_count += 1    
             ## Now check for which subdetector this muon hit belongs to
-                '''
-                The code below does the following:
-                1. For each hit, check if it is in the Velo, TT, IT, OT, Muon or RICH detector
-                2. If it is in any of these detectors, add 1 to the relevant counter variable
-                '''
-                try:
-                    if location == "/Event/MC/Velo/Hits":
-                        velo_muon_hit_count += 1
-                    elif location == "/Event/MC/TT/Hits":
-                        tt_muon_hit_count += 1
-                    elif location == "/Event/MC/IT/Hits":
-                        it_muon_hit_count += 1
-                    elif location == "/Event/MC/OT/Hits":
-                        ot_muon_hit_count += 1
-                    elif location == "/Event/MC/Muon/Hits":
-                        muon_muon_hit_count += 1
-                    elif location == "/Event/MC/Rich/Hits":
-                        rich_muon_hit_count += 1
-                except:
-                    pass                
+                if location == "/Event/MC/Velo/Hits":
+                    velo_muon_hit_count += 1
+                elif location == "/Event/MC/TT/Hits":
+                    tt_muon_hit_count += 1
+                elif location == "/Event/MC/IT/Hits":
+                    it_muon_hit_count += 1
+                elif location == "/Event/MC/OT/Hits":
+                    ot_muon_hit_count += 1
+                elif location == "/Event/MC/Muon/Hits":
+                    muon_muon_hit_count += 1
+                elif location == "/Event/MC/Rich/Hits":
+                    rich_muon_hit_count += 1
                 # Now we want to see hits from muons which are decay products of taus
                 mother = mcparticle.mother()
                 if mother:
@@ -227,7 +188,7 @@ print("Number of Muon Rich hits: ", rich_muon_hit_count)
 print("Number of Muon chamber Muon hits: ", muon_muon_hit_count)
 
 
-
+# Create histogram plot of the number of hits in each subdetector
 subdetectors = ["Velo", "TT", "IT", "OT", "Muon", "Rich"]
 hits = [total_velo_hits, total_tt_hits, total_it_hits, total_ot_hits, total_muon_hits, total_rich_hits]
 plt.figure()  # Add this line to create a new figure
@@ -236,7 +197,7 @@ plt.xlabel("Subdetector")
 plt.ylabel("Number of hits")
 plt.yscale('log')
 plt.title("Number of hits in each subdetector")
-plt.savefig("figs/hits_in_each_subdetector.png")
+plt.savefig("figs/pv_ctau_stau/hits_in_each_subdetector.png")
 
 # Create histogram plot of the number of hits from each particle
 particles = ["Stau", "Tau", "Muons"]
@@ -247,5 +208,5 @@ plt.xlabel("Particle")
 plt.ylabel("Number of hits")
 plt.yscale('log')
 plt.title("Number of hits from each particle")
-plt.savefig("figs/hits_from_each_particle.png")
-pdb.set_trace()        
+plt.savefig("figs/pv_ctau_stau/hits_from_each_particle.png")
+pdb.set_trace()
