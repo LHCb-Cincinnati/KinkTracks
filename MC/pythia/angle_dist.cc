@@ -116,7 +116,7 @@ int main() {
 
     if (num != 0) {
         std::stringstream title;
-        title << "Stau (" << num << " GeV)";
+        title << "Stau (" << num << " GeV), ctau = <> mm";
         hpl.add(angel3D, "h,red", title.str());
     } else {
         std::cerr << "Could not find Stau mass in " << cmnd_filename << std::endl;
