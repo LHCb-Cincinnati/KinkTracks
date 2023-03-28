@@ -1,7 +1,7 @@
 '''
 Author: Mohamed Elashri
 date: 2022-08-02
-Usage: lb-run DaVinci/v45r8 python3 -i analysis2.py
+Usage: lb-run DaVinci/v45r8 python3 -i analysis.py
 '''
 
 # # import python packages
@@ -9,14 +9,13 @@ import sys
 import pdb
 import numpy as np
 from array import array
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 # Import HEP/LHCb
-
-#import ROOT
-#from ROOT import TFile, TTree, TH1F, TCanvas, gROOT, gStyle
 import ROOT
 from ROOT import gROOT, gStyle, TCanvas, TFile, TTree, TH1F, TH2F, TH3F, TH1D, TH2D, TH3D
-
 import GaudiPython
 from GaudiConf import IOHelper
 from Configurables import DaVinci
@@ -28,7 +27,7 @@ from glob import glob
 for file in glob("*.sim"):
     IOHelper('ROOT').inputFiles([file], clear=True)   
 '''
-datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_stable_with_Cut.sim'
+datafile = '<file_name>.sim'
 
 IOHelper().inputFiles([
     datafile
@@ -107,12 +106,15 @@ processed = 0
 
 
 
+
+
 while processed < evtmax:
 #while bool(tes['/Event']) and processed < evtmax:
     processed += 1
     gaudi.run(1)
     particles = tes['MC/Particles']
     pid_list = [particle.particleID().pid() for particle in particles]
+    print("Event number: ", processed)
        
     for particle in particles: 
         if particle.particleID().pid() == 1000015:
@@ -230,7 +232,6 @@ while processed < evtmax:
             if mother and mother.particleID().pid() == -1000015:
                 print("The tau+ particle index is",particles.index(particle))
                 n_a_taus_from_staus += 1
-               
             
 print("Total number of staus is",n_stau)
 print("Total number of staus in acceptance is",n_stau_in_acc)
@@ -249,42 +250,58 @@ print("Total number of anti-muons from anti-taus is",n_amuons_from_taus)
 print("Total number of gravitinos is",n_gravitino)     
 
 # Create a histogram of the number of each particle type in the event
-particles_hist = ROOT.TH1F("particles_hist", "Number of particles in the event", 15, 0, 15)  # Change the number of bins to 15
-particles_hist.SetStats(False)
-particles_hist.SetTitle("Number of particles in the event")
-particles_hist.SetBinContent(1,n_stau)
-particles_hist.SetBinContent(2,n_stau_in_acc)
-particles_hist.SetBinContent(3,n_a_stau)
-particles_hist.SetBinContent(4,n_a_stau_in_acc)
-particles_hist.SetBinContent(5,n_tau)
-particles_hist.SetBinContent(6,n_taus_in_acc)
-particles_hist.SetBinContent(7,n_a_tau)
-particles_hist.SetBinContent(8,n_ataus_in_acc)
-particles_hist.SetBinContent(9,n_gravitino)
-particles_hist.SetBinContent(10,n_muons)
-particles_hist.SetBinContent(11,n_amuons)
-particles_hist.SetBinContent(12,n_muons_from_taus)
-particles_hist.SetBinContent(13,n_amuons_from_taus)
-particles_hist.SetBinContent(14,n_taus_from_staus)
-particles_hist.SetBinContent(15,n_a_taus_from_staus)
-particles_hist.GetXaxis().SetBinLabel(1,"staus")
-particles_hist.GetXaxis().SetBinLabel(2,"staus in acceptance")
-particles_hist.GetXaxis().SetBinLabel(3,"anti-staus")
-particles_hist.GetXaxis().SetBinLabel(4,"anti-staus in acceptance")
-particles_hist.GetXaxis().SetBinLabel(5,"taus")
-particles_hist.GetXaxis().SetBinLabel(6,"taus in acceptance")
-particles_hist.GetXaxis().SetBinLabel(7,"anti-taus")
-particles_hist.GetXaxis().SetBinLabel(8,"anti-taus in acceptance")
-particles_hist.GetXaxis().SetBinLabel(9,"gravitinos")
-particles_hist.GetXaxis().SetBinLabel(10,"muons")
-particles_hist.GetXaxis().SetBinLabel(11,"anti-muons")
-particles_hist.GetXaxis().SetBinLabel(12,"muons from taus")
-particles_hist.GetXaxis().SetBinLabel(13,"anti-muons from anti-taus")
-particles_hist.GetXaxis().SetBinLabel(14,"taus from staus")
-particles_hist.GetXaxis().SetBinLabel(15,"anti-taus from anti-staus")
-particles_hist.GetXaxis().LabelsOption("v")
-# save the histogram to a pdf file
-c1 = ROOT.TCanvas("c1", "c1", 800, 600)
-particles_hist.Draw()
-c1.Print("particles_hist.pdf")
 
+# Data
+labels = [
+    "stau-",
+    "stau- InAcce",
+    "stau+",
+    "stau+ InAcce",
+    "tau-",
+    "tau- InAcce",
+    "tau+",
+    "tau+ InAcce",
+    "gravitinos",
+    "muons-",
+    "muons+",
+    "muon- from tau-",
+    "muos+ from tau+",
+    "tau- from stau-",
+    "tau+ from stau+",
+]
+values = [
+    n_stau,
+    n_stau_in_acc,
+    n_a_stau,
+    n_a_stau_in_acc,
+    n_tau,
+    n_taus_in_acc,
+    n_a_tau,
+    n_ataus_in_acc,
+    n_gravitino,
+    n_muons,
+    n_amuons,
+    n_muons_from_taus,
+    n_amuons_from_taus,
+    n_taus_from_staus,
+    n_a_taus_from_staus,
+]
+
+# Bar plot
+fig, ax = plt.subplots(figsize=(12, 6))
+bars = plt.bar(range(len(values)), values)
+plt.xticks(range(len(labels)), labels, rotation=45, ha='right')
+
+# Add the actual values on top of the bars
+for bar, value in zip(bars, values):
+    ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), value, ha='center', va='bottom')
+
+# Axis labels and title
+plt.xlabel('Particles')
+plt.ylabel('Number of particles')
+# Add legends that this is for 100 Events in Gauss
+plt.legend(['100 Events in Gauss'])
+plt.title('Number of particles in the events')
+
+# Save the figure
+plt.savefig('figs/n_particles_hist.pdf', bbox_inches='tight')
