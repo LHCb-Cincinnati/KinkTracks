@@ -1,3 +1,13 @@
+'''
+Name: tau_calc.py
+Description: This is a simple python script to calculate lifetime given a decay length and vice versa.
+Author: Mohamed Elashri
+Date: 2022-08-28
+Usage: python tau_calc.py
+'''
+
+
+
 ## This file is used to calculate the lifetime needed for specific c*tau value
 
 
