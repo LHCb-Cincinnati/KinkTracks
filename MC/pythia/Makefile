@@ -37,25 +37,25 @@ $(PYTHIA):
 	$(error Error: PYTHIA must be built, please run "make"\
                 in the top PYTHIA directory)
 
-kink: $(PYTHIA) kink.cc
+kink: $(PYTHIA) kink.cc utils.h utils.cpp
 ifeq ($(ROOT_USE),true)
-	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
+	$(CXX) kink.cc utils.cpp -o kink -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
 else
-	$(error Error: $@ requires ROOT)
+	$(error Error: kink requires ROOT)
 endif
 
 
 angle_dist: $(PYTHIA) angle_dist.cc
 ifeq ($(ROOT_USE),true)
-	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
+	$(CXX) angle_dist.cc utils.cpp -o kink -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
 else
 	$(error Error: $@ requires ROOT)
 endif
 len_dist: $(PYTHIA) len_dist.cc
 ifeq ($(ROOT_USE),true)
-	$(CXX) $@.cc -o $@ -w $(CXX_COMMON) $(ROOT_LIB)\
+	$(CXX) len_dist.cc utils.cpp -o kink -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
 else
 	$(error Error: $@ requires ROOT)

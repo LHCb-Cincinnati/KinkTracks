@@ -1,13 +1,13 @@
 # PYTHIA configuration file.
-# Generated on Wed Mar 30 11:23:15 EDT 2022 with the user supplied options:
+# Generated on Tue Mar 28 11:27:53 EDT 2023 with the user supplied options:
 # --with-python-config=python3-config
 # --with-root=
 
 # Install directory prefixes.
-PREFIX_BIN=/Users/mohamedelashri/Desktop/LHCb/pythia/bin
-PREFIX_INCLUDE=/Users/mohamedelashri/Desktop/LHCb/pythia/include
-PREFIX_LIB=/Users/mohamedelashri/Desktop/LHCb/pythia/lib
-PREFIX_SHARE=/Users/mohamedelashri/Desktop/LHCb/pythia/share/Pythia8
+PREFIX_BIN=/Users/mohamedelashri/pythia8309/bin
+PREFIX_INCLUDE=/Users/mohamedelashri/pythia8309/include
+PREFIX_LIB=/Users/mohamedelashri/pythia8309/lib
+PREFIX_SHARE=/Users/mohamedelashri/pythia8309/share/Pythia8
 
 # Compilation flags (see ./configure --help for further documentation).
 CXX=g++
@@ -35,11 +35,11 @@ HEPMC2_BIN=
 HEPMC2_INCLUDE=
 HEPMC2_LIB=
 
-HEPMC3_USE=true
-HEPMC3_CONFIG=HepMC3-config
-HEPMC3_BIN=/opt/homebrew/Cellar/hepmc3/3.2.5_1/bin/
-HEPMC3_INCLUDE=-I/opt/homebrew/Cellar/hepmc3/3.2.5_1/include
-HEPMC3_LIB=-L/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -Wl,-rpath,/opt/homebrew/Cellar/hepmc3/3.2.5_1/lib -lHepMC3
+HEPMC3_USE=false
+HEPMC3_CONFIG=
+HEPMC3_BIN=
+HEPMC3_INCLUDE=
+HEPMC3_LIB=
 
 LHAPDF5_USE=false
 LHAPDF5_CONFIG=
@@ -67,9 +67,9 @@ RIVET_LIB=
 
 ROOT_USE=true
 ROOT_CONFIG=root-config
-ROOT_BIN=/opt/homebrew/Cellar/root/6.26.00/bin/
-ROOT_INCLUDE=-I/opt/homebrew/Cellar/root/6.26.00/include/root
-ROOT_LIB=-L/opt/homebrew/Cellar/root/6.26.00/lib/root -Wl,-rpath,/opt/homebrew/Cellar/root/6.26.00/lib/root -lCore
+ROOT_BIN=/opt/homebrew/Cellar/root/6.26.06_2/bin/
+ROOT_INCLUDE=-I/opt/homebrew/Cellar/root/6.26.06_2/include/root
+ROOT_LIB=-L/opt/homebrew/Cellar/root/6.26.06_2/lib/root -Wl,-rpath,/opt/homebrew/Cellar/root/6.26.06_2/lib/root -lCore
 
 GZIP_USE=false
 GZIP_CONFIG=
@@ -80,7 +80,7 @@ GZIP_LIB=
 PYTHON_USE=true
 PYTHON_CONFIG=python3-config
 PYTHON_BIN=
-PYTHON_INCLUDE=-I/opt/homebrew/Cellar/python@3.8/3.8.13/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/homebrew/Cellar/python@3.8/3.8.13/Frameworks/Python.framework/Versions/3.8/include/python3.8
+PYTHON_INCLUDE=-I/opt/homebrew/Caskroom/miniforge/base/include/python3.10 -I/opt/homebrew/Caskroom/miniforge/base/include/python3.10
 PYTHON_LIB=
 
 MG5MES_USE=false
