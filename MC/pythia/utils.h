@@ -30,4 +30,5 @@ double kink_angle_theta(double theta_stau, double theta_tau);
 double decay_length(const Pythia8::Event& event, int index);
 
 int get_stau_mass_from_cmnd_file(const std::string &cmnd_filename);
+
 int get_stau_length_from_cmnd_file(const std::string &cmnd_filename);
