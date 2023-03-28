@@ -119,7 +119,7 @@ int main() {
     outfile << "# Stau in LHCb Acc: " << n_staus_accepted << std::endl;
     outfile << "# Gravitino in LHCb Acc: " << n_gravitinosInAcc << std::endl;
     outfile << "# Taus in LHCb Acc: " << n_tauInAcc << std::endl;
-    outfile << "#   : " << n_taus_from_stau << std::endl;
+    outfile << "# Taus from stau: " << n_taus_from_stau << std::endl;
     outfile << "# Gravitino from stau: " << n_gravitinos_from_stau << std::endl;
 
     outfile.close();
