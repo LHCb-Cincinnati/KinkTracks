@@ -46,19 +46,20 @@ else
 endif
 
 
-angle_dist: $(PYTHIA) angle_dist.cc
+angle_dist: $(PYTHIA) angle_dist.cc utils.h utils.cpp
 ifeq ($(ROOT_USE),true)
-	$(CXX) angle_dist.cc utils.cpp -o kink -w $(CXX_COMMON) $(ROOT_LIB)\
+	$(CXX) angle_dist.cc utils.cpp -o angle_dist -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
 else
-	$(error Error: $@ requires ROOT)
+	$(error Error: kink requires ROOT)
 endif
-len_dist: $(PYTHIA) len_dist.cc
+
+len_dist: $(PYTHIA) len_dist.cc utils.h utils.cpp
 ifeq ($(ROOT_USE),true)
-	$(CXX) len_dist.cc utils.cpp -o kink -w $(CXX_COMMON) $(ROOT_LIB)\
+	$(CXX) len_dist.cc utils.cpp -o len_dist -w $(CXX_COMMON) $(ROOT_LIB)\
 	 `$(ROOT_CONFIG) --cflags --glibs`
 else
-	$(error Error: $@ requires ROOT)
+	$(error Error: kink requires ROOT)
 endif
 
 # Clean.
@@ -68,4 +69,4 @@ clean:
 	rm -f *~; rm -f \#*; rm -f core*; rm -f *Dct.*; rm -f *.so;\
 	rm -f *.log; rm -f *.py; rm -f *.pcm; rm -f *.mpi;\
 	rm -f *.hepmc; rm -f *.yoda; rm -f *.root; \
-	rm -f *.py; rm -f *.pdf
+	rm -f *.py; rm -f *.pdf; rm -f *.txt;

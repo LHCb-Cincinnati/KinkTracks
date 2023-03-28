@@ -6,12 +6,11 @@
 #include <fstream>
 #include <regex>
 #include <string>
+#include "utils.h"
+
 
 using namespace Pythia8;
 
-bool is_valid_decay(int id1, int id2) {
-    return ((abs(id1) == 15 && abs(id2) == 1000039) || (abs(id1) == 1000039 && abs(id2) == 15));
-}
 
 int main() {
     // Generator
@@ -61,7 +60,7 @@ int main() {
                         }
 
                         // Calculate the decay length
-                        double dist = event[i].vDec().pAbs();
+                        double dist = decay_length(event, i);
                         length.fill(dist);
                     }
                 }

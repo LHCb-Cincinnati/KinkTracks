@@ -1,14 +1,11 @@
 #include "Pythia8/Pythia.h"
-//#include "Pythia8Plugins/HepMC2.h"
-//#include "Pythia8Plugins/HepMC3.h"
 #include <iostream>
 #include <fstream>
+#include "utils.h"
 
 using namespace Pythia8;
 
-bool is_valid_decay(int id1, int id2) {
-    return ((abs(id1) == 15 && abs(id2) == 1000039) || (abs(id1) == 1000039 && abs(id2) == 15));
-}
+
 
 int main() {
     // Generator
