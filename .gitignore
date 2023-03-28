@@ -1,9 +1,10 @@
-.vscode
+**/.vscode
 MC/pythia/.gitignore
-.nova/
+**/.nova
 **/*.pdf
 **/*.txt
 **/*.xdigi
+**/*.dat
 **/*.py
 !MC/pythia/plotting/*.py
 **/*.root
@@ -13,3 +14,5 @@ MC/pythia/.gitignore
 MC/pythia/angle_dist
 MC/pythia/len_dist
 MC/pythia/kink
+**/__pycache__
+**/.idea
