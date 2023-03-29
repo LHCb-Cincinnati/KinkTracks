@@ -74,8 +74,8 @@ double decay_length(const Pythia8::Event& event, int index) {
         return -1;
     }
 
-    // Check if particle has a decay vertex
-    if (!event[index].hasDecayVertex()) {
+    // Check if particle has a decay vertex by checking if it has a mother
+    if (event[index].mother1() <= 0 || event[index].mother2() <= 0) {
         return -1;
     }
 
