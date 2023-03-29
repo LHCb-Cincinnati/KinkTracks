@@ -9,6 +9,8 @@ MC/pythia/.gitignore
 !MC/pythia/plotting/*.py
 **/*.root
 **/*.sim
+**/*.png
+**/*.jpg
 **/settings.json
 **/log
 MC/pythia/angle_dist
