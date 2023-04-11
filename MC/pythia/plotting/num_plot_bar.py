@@ -6,8 +6,10 @@ def read_particle_counts(file_path):
         counts = [int(line.strip().split()[-1]) for line in lines]
         return counts
 
+ms = '300'
 ln = '10'
-file_path = 'data/particle_counts_' + ln + 'mm.txt'
+
+file_path = f"data/stau_{int(ms)}GeV/particle_counts_{int(ln)}mm.txt"
 
 counts = read_particle_counts(file_path)
 
@@ -45,6 +47,6 @@ for bar in bars:
                        ha='center', va='bottom')
 
 plt.tight_layout()
-plt.savefig('plots/particles/Stau_100GeV/particles_numbers_' + ln + 'mm.pdf')
-plt.show()
+plt.savefig(f"plots/mc_plots/stau_{int(ms)}GeV/{int(ln)}mm/particles_numbers_{int(ln)}mm.pdf")
+#plt.show()
 

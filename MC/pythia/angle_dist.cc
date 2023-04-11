@@ -41,43 +41,55 @@ for (int iEvent = 0; iEvent < nEvents; ++iEvent) {
     if (iEvent % 1000 == 0) std::cout << "Event: " << iEvent << std::endl;
     if (!pythia.next()) continue;
 
-    // Loop over all stau decays in the event.
-    for (int i = 0; i < event.size(); ++i) {
-        int idAbs = event[i].idAbs(); // call particles by ID
-        double eta = event[i].eta(); //  eta (pseudorapidity)
+        // Loop over all stau decays in the event.
+        for (int i = 0; i < event.size(); ++i) {
+            int idAbs = event[i].idAbs(); // call particles by ID
+            double eta = event[i].eta(); //  eta (pseudorapidity)
 
-        if (idAbs == stau || idAbs == -stau) { // if the particle is stau or anti stau
-            n_staus++;
-            if (eta > 1.9 && eta < 5.1) {  // if the particle is in the LHCb eta range
-                n_staus_accepted++;
-                // Find the daughters of the stau.
-                int iDau1 = event[i].daughter1();
-                int iDau2 = event[i].daughter2();
+            if (idAbs == stau || idAbs == -stau) { // if the particle is stau or anti stau
+                // Find the mother(s) of the stau
+                int iMother1 = event[i].mother1();
+                int iMother2 = event[i].mother2();
+                
+                // Check if the mother is not a stau
+                if ((iMother1 == 0 || event[iMother1].idAbs() != stau) &&
+                    (iMother2 == 0 || event[iMother2].idAbs() != stau)) {
+                    n_staus++;
+                    if (eta > 1.9 && eta < 5.1) {  // if the particle is in the LHCb eta range
+                        n_staus_accepted++;
+                        // Find the daughters of the stau.
+                        int iDau1 = event[i].daughter1();
+                        int iDau2 = event[i].daughter2();
 
-                // Check if the decay is valid (stau decays to tau and gravitino)
-                if (is_valid_decay(event[iDau1].id(), event[iDau2].id())) {
-                    double theta_stau = event[i].theta();
-                    double theta_tau = (event[iDau1].idAbs() == 15) ? event[iDau1].theta() : event[iDau2].theta();
-                    double phi_stau = event[i].phi();
-                    double phi_tau = (event[iDau1].idAbs() == 15) ? event[iDau1].phi() : event[iDau2].phi();
+                        // Check if the decay is valid (stau decays to tau and gravitino)
+                        if (is_valid_decay(event[iDau1].id(), event[iDau2].id())) {
+                            double theta_stau = event[i].theta();
+                            double theta_tau = (event[iDau1].idAbs() == 15) ? event[iDau1].theta() : event[iDau2].theta();
+                            double phi_stau = event[i].phi();
+                            double phi_tau = (event[iDau1].idAbs() == 15) ? event[iDau1].phi() : event[iDau2].phi();
 
-                    double kink_ang = kink3d_angle(theta_stau, theta_tau, phi_stau, phi_tau);
-                    double kink_ang_phi = kink_angle_phi(phi_stau, phi_tau);
-                    double kink_ang_theta = kink_angle_theta(theta_stau, theta_tau);
-                    cout << "Kink angle: " << kink_ang << endl;
-                    ndecay_s_accepted++;
-                    angel3D.fill(kink_ang);
-                    angel2D_phi.fill(kink_ang_phi);
-                    angel2D_theta.fill(kink_ang_theta);
+                            double kink_ang = kink3d_angle(theta_stau, theta_tau, phi_stau, phi_tau);
+                            double kink_ang_phi = kink_angle_phi(phi_stau, phi_tau);
+                            double kink_ang_theta = kink_angle_theta(theta_stau, theta_tau);
+                            //cout << "Kink angle: " << kink_ang << endl;
+                            angel3D.fill(kink_ang);
+                            angel2D_phi.fill(kink_ang_phi);
+                            angel2D_theta.fill(kink_ang_theta);
 
-                    // Count the decay products
-                    if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
-                        ndecay_g_accepted++;
+                            // Count the decay products
+                            // gravitino
+                            if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
+                                ndecay_g_accepted++;
+                            }
+                            // tau
+                            if (event[iDau1].idAbs() == 15 || event[iDau2].idAbs() == 15) {
+                                ndecay_s_accepted++;
+                            }
+                        }
                     }
                 }
             }
         }
-    }
 }
 
     // Statistics.
@@ -101,17 +113,17 @@ if (stau_mass == 0) {
     title << "Stau (" << stau_mass << " GeV), ctau = " << stau_length << " mm";
 
     HistPlot hpl("DecayAngle");
-    hpl.frame("DecayAnglePlot", "Decay (kink) Angle Distribution", "angle (degrees)", "Entries");
+    hpl.frame("DecayAnglePlot_" + std::to_string(stau_length) + "mm", "Decay (kink) Angle Distribution", "angle (degrees)", "Entries");
     hpl.add(angel3D, "h,red", title.str());
     hpl.plot();
 
     HistPlot hpl_phi("DecayAngle_phi");
-    hpl_phi.frame("DecayAnglePlot_phi", "Decay (kink) Angle Distribution (phi)", "angle (degrees)", "Entries");
+    hpl_phi.frame("DecayAnglePlot_phi_" + std::to_string(stau_length) + "mm", "Decay (kink) Angle Distribution (phi)", "angle (degrees)", "Entries");
     hpl_phi.add(angel2D_phi, "h,red", title.str());
     hpl_phi.plot();
 
     HistPlot hpl_theta("DecayAngle_theta");
-    hpl_theta.frame("DecayAnglePlot_theta", "Decay (kink) Angle Distribution (theta)", "angle (degrees)", "Entries");
+    hpl_theta.frame("DecayAnglePlot_theta_" + std::to_string(stau_length) + "mm", "Decay (kink) Angle Distribution (theta)", "angle (degrees)", "Entries");
     hpl_theta.add(angel2D_theta, "h,red", title.str());
     hpl_theta.plot();
 }

@@ -45,23 +45,36 @@ int main() {
             double eta = event[i].eta(); //  eta (pseudorapidity)
 
             if (idAbs == stau || idAbs == -stau) { // if the particle is stau or anti stau
-                n_staus++;
-                if (eta > 1.9 && eta < 5.1) {  // if the particle is in the LHCb eta range
-                    n_staus_accepted++; 
-                    // Find the daughters of the stau.
-                    int iDau1 = event[i].daughter1();
-                    int iDau2 = event[i].daughter2();
+                // Find the mother(s) of the stau
+                int iMother1 = event[i].mother1();
+                int iMother2 = event[i].mother2();
+                
+                // Check if the mother is not a stau
+                if ((iMother1 == 0 || event[iMother1].idAbs() != stau) &&
+                    (iMother2 == 0 || event[iMother2].idAbs() != stau)) {
+                    n_staus++;
+                    if (eta > 1.9 && eta < 5.1) {  // if the particle is in the LHCb eta range
+                        n_staus_accepted++; 
+                        // Find the daughters of the stau.
+                        int iDau1 = event[i].daughter1();
+                        int iDau2 = event[i].daughter2();
 
-                    // Check if the decay is valid (stau decays to tau and gravitino)
-                    if (is_valid_decay(event[iDau1].id(), event[iDau2].id())) {
-                        // Count the decay products
-                        if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
-                            ndecay_g_accepted++;
+                        // Check if the decay is valid (stau decays to tau and gravitino)
+                        if (is_valid_decay(event[iDau1].id(), event[iDau2].id())) {
+                            // Count the decay products
+                            // gravitinos
+                            if (event[iDau1].idAbs() == 1000039 || event[iDau2].idAbs() == 1000039) {
+                                ndecay_g_accepted++;
+                            }
+                            // taus
+                            if (event[iDau1].idAbs() == 15 || event[iDau2].idAbs() == 15) {
+                                ndecay_s_accepted++;
+                            }
+
+                            // Calculate the decay length
+                            double dist = event[i].vDec().pAbs();
+                            length.fill(dist);
                         }
-
-                        // Calculate the decay length
-                        double dist = decay_length(event, i);
-                        length.fill(dist);
                     }
                 }
             }
@@ -75,41 +88,23 @@ int main() {
     cout << "Total number of staus is: " << n_staus << endl;
     cout << "Total number of staus accepted is: " << n_staus_accepted << endl;
 
-
-    HistPlot hpl("DecayLength");
-    hpl.frame( "DecayLengthPlot", "Decay Length Distribution", "Length (mm)","Entries");
-        // in hpl.add read the $num in Stau ($num GeV) from the number in SLHA:file = SLHA/GMSB_mtau_$numGeV.slha from the kink.cmnd file
-    std::string cmnd_filename = "kink.cmnd";
-    std::ifstream cmnd_file(cmnd_filename);
-    std::string line;
-    int num = 0;
-
-    if (cmnd_file.is_open()) {
-        std::regex slha_regex("SLHA\\/GMSB_mtau_([0-9]+)GeV\\.slha");
-
-        while (getline(cmnd_file, line)) {
-            std::smatch matches;
-            if (std::regex_search(line, matches, slha_regex) && matches.size() > 1) {
-                num = std::stoi(matches[1].str());
-                break;
-            }
+    int stau_mass = get_stau_mass_from_cmnd_file("kink.cmnd");
+    int stau_length = get_stau_length_from_cmnd_file("kink.cmnd");
+    if (stau_mass == 0) {
+        std::cerr << "Could not find Stau mass in kink.cmnd" << std::endl;
+    } else {
+        if (stau_length == 0) {
+            std::cerr << "Could not find Stau length (ctau) in kink.cmnd" << std::endl;
         }
-        cmnd_file.close();
-    } else {
-        std::cerr << "Unable to open file " << cmnd_filename << std::endl;
-    }
-
-    if (num != 0) {
         std::stringstream title;
-        title << "Stau (" << num << " GeV), ctau = <> mm";
-        hpl.add(length, "h,red", title.str());
-    } else {
-        std::cerr << "Could not find Stau mass in " << cmnd_filename << std::endl;
-    }
+        title << "Stau (" << stau_mass << " GeV), ctau = " << stau_length << " mm";
 
+    HistPlot hpl("DecayLength_" + std::to_string(stau_mass) +"GeV_" + std::to_string(stau_length) + "mm");
+    hpl.frame("DecayLength_" + std::to_string(stau_mass) +"GeV_" + std::to_string(stau_length) + "mm" , "Decay Length Distribution", "Length (mm)", "Entries");
+    hpl.add(length, "h,red", title.str());
     hpl.plot();
 
-
+    }
     // Done.
     return 0;
 }

@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+ms = '300'
 ln = '10000'
-file_path = 'data/particle_counts_' + ln + 'mm.txt'
+
+file_path = f"data/stau_{int(ms)}GeV/particle_counts_{int(ln)}mm.txt"
 
 # Read the particle counts from the file
 particle_counts = {}
@@ -31,8 +32,7 @@ bars = ax.bar(ratios.keys(), ratios.values(), color=["tab:blue", "tab:orange", "
 plt.xticks(rotation=45, ha="right")
 plt.ylabel("Ratio")
 plt.ylim(0, 0.2)
-plt.title("Particle Ratios (Stau = 100 GeV, ctau = " + ln + " mm)")
-
+plt.title("Particle Ratios (Stau = " + str(ms) + " GeV, ctau = " + str(ln) + " mm)")
 # Display the rounded ratios on top of the bars
 for bar, ratio in zip(bars, ratios.values()):
     ax.text(
@@ -50,5 +50,5 @@ ax.spines["right"].set_visible(False)
 plt.tight_layout()
 
 # Show the plot
-plt.savefig("plots/particles/Stau_100GeV/particle_ratios_" + ln + "mm.pdf")
-plt.show()
+plt.savefig(f"plots/mc_plots/stau_{int(ms)}GeV/{int(ln)}mm/particle_ratios_{int(ln)}mm.pdf")
+#plt.show()

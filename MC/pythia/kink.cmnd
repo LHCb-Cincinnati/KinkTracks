@@ -9,7 +9,7 @@ Main:timesAllowErrors = 3          ! how many aborts before run stops
 ! 2) Settings related to output in init(), next() and stat().
 Init:showChangedSettings = off      ! list changed settings
 Init:showChangedParticleData = off ! list changed particle data
-Next:numberCount = 10000             ! print message every n events
+Next:numberCount = 10             ! print message every n events
 Next:numberShowInfo = 1            ! print event information n times
 Next:numberShowProcess = 1         ! print process record n times
 Next:numberShowEvent = 1           ! print event record n times
@@ -22,7 +22,7 @@ Beams:eCM = 13000.                 ! CM energy of collision
 
 ! 4) Read SLHA spectrum 
 SLHA:verbose = 3                    ! Print all SLHA information
-SLHA:file = SLHA/GMSB_mtau_100GeV.slha
+SLHA:file = SLHA/GMSB_mtau_300GeV.slha
 SLHA:allowUserOverride =true
 
 ! 5) Process selection
@@ -31,8 +31,9 @@ SUSY:qqbar2sleptonantislepton = on
 SUSY:qqbar2gluinogluino  = on
 1000015:tauCalc = false ! turn off automatic lifetime calculation
 1000015:mayDecay = true
+15:mayDecay = true
 1000039:maydecay = false ! turn off gravitino decay
-1000015:tau0 = 10      ! specify the lifetime to use (in units of mm)
+1000015:tau0 = 100      ! specify the lifetime to use (in units of mm)
 1000015:oneChannel = 1 1.0 100 1000039 15 !  stau decay is 100% to SM tau + gravitino
 15:onMode = off      #Turn off decay modes for tau
 15:onIfAny = 13       # Allow only tau -> mu mode

@@ -24,14 +24,17 @@ using namespace Pythia8;
 // Parameters: id1, id2
 // Return Value: true or false
 bool is_valid_decay(int id1, int id2) {
-    if (abs(id1) == 23 || abs(id1) == 24 || abs(id1) == 25) {
-        if (abs(id2) == 11 || abs(id2) == 13 || abs(id2) == 15 || abs(id2) == 22) {
-            return true;
-        }
-    }
-    return false;
-}
+    // Absolute values of particle IDs
+    int id1Abs = abs(id1);
+    int id2Abs = abs(id2);
 
+    // Check if id1 is a tau and id2 is a gravitino, or id1 is a gravitino and id2 is a tau
+    if ((id1Abs == 15 && id2Abs == 1000039) || (id1Abs == 1000039 && id2Abs == 15)) {
+        return true;
+    } else {
+        return false;
+    }
+}    
 
 // this function calculates the kink angle for a tau lepton and a stau lepton
 // the input parameters are the theta and phi angles for both the tau and the stau
