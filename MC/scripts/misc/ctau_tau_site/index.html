@@ -3,104 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Particle Decay Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        input#result {
-            width: 10%;
-            font-size: 1em;
-        }
-        footer {
-    margin-top: 500px;
-    font-size: 0.8em;
-    color: #666;
-}
-    </style>
 </head>
 <body>
-    <h1>
-        <a href=".">Particle Decay Calculator</a>
-    </h1>
-        <p>Select the conversion you want to perform:</p>
-    <select id="conversion">
-        <option value="ctau">Lifetime (tau, s) to Decay Length (ctau, m)</option>
-        <option value="tau">Decay Length (ctau, m) to Lifetime (tau, s)</option>
-    </select>
+    <h1>Particle Decay Calculator</h1>
+    <p>Select the input and output quantities:</p>
+    <label for="input-select">Input Quantity:</label>
+    <!-- Input options -->
+    <select id="input-select">
+        <option value="tau">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>&tau;</mi>
+            </math> (s)
+        </option>
+        <option value="ctau">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>c</mi>
+                <mi>&tau;</mi>
+            </math> (m)
+        </option>
+        <option value="decay_width">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>&Gamma;</mi>
+            </math> (s⁻¹)
+        </option>
+    </select>    
+    <label for="output-select">Output Quantity:</label>
+    <!-- Output options -->
+    <select id="output-select">
+        <option value="ctau">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>c</mi>
+                <mi>&tau;</mi>
+            </math> (m)
+        </option>
+        <option value="decay_width">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mi>&Gamma;</mi>
+            </math> (s⁻¹)
+        </option>
+    </select>    
     <br><br>
     <label for="inputValue">Input Value:</label>
     <input type="number" id="inputValue" placeholder="Enter a value">
+    <span id="input-unit-label">(s)</span>
+    <select id="input-unit" style="display: none;">
+        <option value="m">m</option>
+        <option value="cm">cm</option>
+        <option value="mm">mm</option>
+    </select>
     <br><br>
     <button onclick="calculate()">Calculate</button>
     <br><br>
-    <label for="result">Result:</label>
+    <label for="result" id="result-label">Result:</label>
     <input type="number" id="result" readonly>
-    <span id="unit">m</span>
+    <span id="result-unit"></span>
+    <select id="output-unit" style="display: none;">
+        <option value="m">m</option>
+        <option value="cm">cm</option>
+        <option value="mm">mm</option>
+    </select>
+    <span id="result-unit"></span>    
     <script>
 
+        document.getElementById("input-select").addEventListener("change", function () {
+            const inputSelect = this.value;
+            const outputSelect = document.getElementById("output-select");
+            const outputOptions = outputSelect.options;
+            const inputUnitLabel = document.getElementById("input-unit-label");
 
-
-	function setBackground() {
-		const style = document.getElementById("dynamicStyle");
-		const hours = new Date().getHours();
-
-			if (hours >= 6 && hours < 18) {
-                style.innerHTML = `
-                    body {
-                        background-color: white;
-                        color: black;
-                    }
-                `;
-            } else {
-                style.innerHTML = `
-                    body {
-                        background-color: black;
-                        color: white;
-                    }
-                `;
+            switch (inputSelect) {
+                case "tau":
+                    inputUnitLabel.textContent = "(s)";
+                    break;
+                case "ctau":
+                    inputUnitLabel.textContent = "(m)";
+                    break;
+                case "decay_width":
+                    inputUnitLabel.textContent = "(s⁻¹)";
+                    break;
             }
+
+            outputSelect.innerHTML = ""; // Remove existing output options
+
+            // Create an array of available options
+            const options = [
+                { value: "tau", text: "Lifetime (tau, s)" },
+                { value: "ctau", text: "Decay Length (ctau, m)" },
+                { value: "decay_width", text: "Decay Width (Γ, s⁻¹)" }
+            ];
+
+            // Filter out the selected input option
+            const filteredOptions = options.filter(option => option.value !== inputSelect);
+
+            // Add the filtered options to the output dropdown
+            filteredOptions.forEach(option => {
+                const opt = document.createElement("option");
+                opt.value = option.value;
+                opt.text = option.text;
+                outputSelect.add(opt);
+            });
+
+            document.getElementById("result-label").textContent = `Result (${outputSelect.value}):`;
+        });
+
+
+
+
+
+        function calculate() {
+            const inputSelect = document.getElementById("input-select").value;
+            const outputSelect = document.getElementById("output-select").value;
+            const inputValue = parseFloat(document.getElementById("inputValue").value);
+
+            if (isNaN(inputValue)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            const inputUnit = document.getElementById("input-unit").value;
+            const outputUnit = document.getElementById("output-unit").value;
+            let result;
+            let resultUnit;
+
+            let inputCtau = inputSelect === "ctau" ? inputValue * (inputUnit === "m" ? 1 : (inputUnit === "cm" ? 0.01 : 0.001)) : 0;
+            
+            if (inputSelect === "tau" && outputSelect === "ctau") {
+                inputCtau = inputValue * 299792458;
+            } else if (inputSelect === "tau" && outputSelect === "decay_width") {
+                result = 1 / inputValue;
+                resultUnit = 's⁻¹';    } else if (inputSelect === "ctau" && outputSelect === "tau") {
+                result = inputCtau / 299792458;
+                resultUnit = 's';
+            } else if (inputSelect === "ctau" && outputSelect === "decay_width") {
+                result = 299792458 / inputCtau;
+                resultUnit = 's⁻¹';
+            } else if (inputSelect === "decay_width" && outputSelect === "tau") {
+                result = 1 / inputValue;
+                resultUnit = 's';
+            } else if (inputSelect === "decay_width" && outputSelect === "ctau") {
+                inputCtau = 299792458 / inputValue;
+            }
+
+            if (outputSelect === "ctau") {
+                result = inputCtau * (outputUnit === "m" ? 1 : (outputUnit === "cm" ? 100 : 1000));
+                resultUnit = outputUnit;
+            }
+            
+            document.getElementById("result-label").textContent = `Result (${outputSelect}):`;
+            document.getElementById("result").value = result;
+            document.getElementById("result-unit").textContent = resultUnit;
         }
 
-        setBackground();
-        setInterval(setBackground, 60 * 1000); // Update the background color every minute	
-    document.getElementById("conversion").addEventListener("change", function() {
-        const conversion = this.value;
-        const unit = document.getElementById("unit");
-        if (conversion === "ctau") {
-            unit.textContent = "m";
-        } else {
-            unit.textContent = "s";
-        }
-    });
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputSelect = document.getElementById("input-select");
+            const inputValue = document.getElementById("inputValue");
+            const result = document.getElementById("result");
 
-function calculate() {
-    const conversion = document.getElementById("conversion").value;
-    const inputValue = parseFloat(document.getElementById("inputValue").value);
-    const unit = document.getElementById("unit");
+            inputSelect.value = "tau";
+            inputValue.value = "";
+            result.value = "";
 
-    if (isNaN(inputValue)) {
-        alert("Please enter a valid number.");
-        return;
-    }
+            // Trigger the change event to update the output options and input unit label
+            inputSelect.dispatchEvent(new Event("change"));
+        });
 
-    let result;
-    if (conversion === "ctau") {
-        result = inputValue * 299792458;
-        unit.textContent = "m";
-    } else {
-        result = inputValue / 299792458;
-        unit.textContent = "s";
-    }
-
-    document.getElementById("result").value = result;
-}</script>
-</body>
-
-<footer>
-    <p>Created by Mohamed Elashri</p>
-    <p>&copy; [2023] [Mohamed Elashri]. All rights reserved.</p>
-    <p><a href="https://melashri.net" target="_blank">Visit My Website</a></p>
-</footer>
+        </script>
+    </body>
+        <footer>
+            <p>Created by Mohamed Elashri</p>
+            <p>&copy; [2023] [Mohamed Elashri]. All rights reserved.</p>
+            <p><a href="https://melashri.net" target="_blank">Visit My Website</a></p>
+        </footer>
+        
 </html>
