@@ -1,21 +1,30 @@
+# Ignore things that are not part of the repository
 **/.vscode
-MC/pythia/.gitignore
+**/settings.json
 **/.nova
-**/*.pdf
 **/*.txt
 **/*.xdigi
 **/*.dat
+**/.idea
 **/*.py
 !MC/pythia/plotting/*.py
+
+
+# Ignore data files
 **/*.root
 **/*.sim
+
+# Ignore plots and graphs
 **/*.png
 **/*.jpg
-**/settings.json
+**/*.pdf
+**/*.svg
+
+# Ignore log files
 **/log
-MC/pythia/angle_dist
-MC/pythia/len_dist
-MC/pythia/kink
+
+# Ignore python cache
 **/__pycache__
-**/.idea
-MC/Gauss/Misc/width_lifetime/stau_calculator
+
+# Ignore files without extensions
+*[^.]
