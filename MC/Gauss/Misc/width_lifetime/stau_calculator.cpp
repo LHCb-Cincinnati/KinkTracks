@@ -5,6 +5,7 @@
 // Usage: ./stau_calculator <lifetime_in_ns>
 // i.e:
 // ./stau_calculator width 1GeV
+// ./stau_calculator width 1MeV
 // ./stau_calculator lifetime 1s
 // ./stau_calculator lifetime 1ns
 
@@ -68,14 +69,18 @@ int main(int argc, char* argv[]) {
     double inputLifetime_s = -1;
     double inputLifetime_ns = -1;
 
-    if (inputType == "width") {
-        if (unit == "GeV") {
-            inputWidth = inputValue * GeV;
-        } else {
-            std::cerr << "Error: invalid width unit" << std::endl;
-            return 1;
+        if (inputType == "width") {
+            if (unit == "GeV") {
+                inputWidth = inputValue * GeV;
+            } else if (unit == "MeV") {
+                inputWidth = inputValue * MeV;
+            } else {
+                std::cerr << "Error: invalid width unit" << std::endl;
+                return 1;
         }
-    } else if (inputType == "lifetime") {
+        } 
+        
+        else if (inputType == "lifetime") {
         if (unit == "s") {
             inputLifetime_s = inputValue;
         } else if (unit == "ns") {
@@ -84,10 +89,12 @@ int main(int argc, char* argv[]) {
             std::cerr << "Error: invalid lifetime unit" << std::endl;
             return 1;
         }
-    } else {
-        std::cerr << "Error: invalid input type" << std::endl;
-        return 1;
-    }
+        } 
+    
+        else {
+            std::cerr << "Error: invalid input type" << std::endl;
+            return 1;
+        }
 
     double outputWidth, outputLifetime_s, outputLifetime_ns;
 
