@@ -169,8 +169,72 @@
             inputSelect.dispatchEvent(new Event("change"));
         });
 
+        function quickConversion() {
+            const conversionInputValue = parseFloat(document.getElementById("conversion-input").value);
+            const conversionInputUnit = document.getElementById("conversion-input-unit").value;
+            const conversionOutputUnit = document.getElementById("conversion-output-unit").value;
+            const conversionResult = document.getElementById("conversion-result");
+
+            if (isNaN(conversionInputValue)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let inputValueInMeters;
+
+            switch (conversionInputUnit) {
+                case "m":
+                    inputValueInMeters = conversionInputValue;
+                    break;
+                case "cm":
+                    inputValueInMeters = conversionInputValue * 0.01;
+                    break;
+                case "mm":
+                    inputValueInMeters = conversionInputValue * 0.001;
+                    break;
+            }
+
+            let result;
+
+            switch (conversionOutputUnit) {
+                case "m":
+                    result = inputValueInMeters;
+                    break;
+                case "cm":
+                    result = inputValueInMeters * 100;
+                    break;
+                case "mm":
+                    result = inputValueInMeters * 1000;
+                    break;
+            }
+
+            conversionResult.value = result;
+        }
+
+
         </script>
     </body>
+
+            <!-- Quick Length Conversion -->
+        <h2>Quick Length Conversion</h2>
+        <p>Convert between meters, millimeters, and centimeters:</p>
+        <label for="conversion-input">Input:</label>
+        <input type="number" id="conversion-input" placeholder="Enter a value">
+        <select id="conversion-input-unit">
+            <option value="m">m</option>
+            <option value="cm">cm</option>
+            <option value="mm">mm</option>
+        </select>
+        <br><br>
+        <button onclick="quickConversion()">Convert</button>
+        <br><br>
+        <label for="conversion-result">Result:</label>
+        <input type="number" id="conversion-result" readonly>
+        <select id="conversion-output-unit">
+            <option value="m">m</option>
+            <option value="cm">cm</option>
+            <option value="mm">mm</option>
+</select>
         <footer>
             <p>Created by Mohamed Elashri</p>
             <p>&copy; [2023] [Mohamed Elashri]. All rights reserved.</p>
