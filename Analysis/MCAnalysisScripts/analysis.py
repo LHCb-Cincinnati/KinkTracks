@@ -27,8 +27,8 @@ from glob import glob
 for file in glob("*.sim"):
     IOHelper('ROOT').inputFiles([file], clear=True)   
 '''
-datafile = '<file_name>.sim'
-
+#datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_10000mm_ctau_with_Cut.sim'
+datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100n_100mm_ctau_with_length_Cut_test.sim'
 IOHelper().inputFiles([
     datafile
 ], clear=True)
