@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 
 
 LHCbApp().Simulation = True
-IOHelper().inputFiles(['<file_name>.sim'], clear=True)
+IOHelper().inputFiles(['/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_10000mm_ctau_with_Cut.sim'], clear=True)
 
 # Configure DaVinci
 DaVinci().Simulation = True
@@ -197,7 +197,7 @@ plt.xlabel("Subdetector")
 plt.ylabel("Number of hits")
 plt.yscale('log')
 plt.title("Number of hits in each subdetector")
-plt.savefig("figs/hits_in_each_subdetector.png")
+plt.savefig("figs/pv_ctau_stau/hits_in_each_subdetector.pdf")
 
 # Create histogram plot of the number of hits from each particle
 particles = ["Stau", "Tau", "Muons"]
@@ -208,5 +208,5 @@ plt.xlabel("Particle")
 plt.ylabel("Number of hits")
 plt.yscale('log')
 plt.title("Number of hits from each particle")
-plt.savefig("figs/hits_from_each_particle.png")
+plt.savefig("figs/pv_ctau_stau/hits_from_each_particle.pdf")
 pdb.set_trace()        

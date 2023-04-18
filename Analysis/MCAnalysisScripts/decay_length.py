@@ -26,7 +26,8 @@ from utils import *
 
 
 LHCbApp().Simulation = True
-datafile = '<file_name>.sim'
+#datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_150GeV_100n_100mm_ctau_with_length_Cut.sim'
+datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/Stau_100GeV_100n_100mm_ctau_with_length_Cut_test.sim'
 IOHelper().inputFiles([
     datafile
 ], clear=True)
@@ -98,32 +99,6 @@ n_valid_decays = 0 # number of valid decays (stau -> tau + G~)
 decay_lengths = [] # list of decay lengths of valid decays
 # ----------------------------------
 
-'''
-## Functions
-# ----------------------------------
-# check if the decay is valid
-def is_valid_decay(mother, daughter):
-    if mother and daughter:
-        if (mother.particleID().pid() == 1000015 or mother.particleID().pid() == -1000015) and (
-            daughter.particleID().pid() == 15 or daughter.particleID().pid() == -15
-        ):
-            if mother.endVertices() and len(mother.endVertices()) > 0:
-                other_daughter = [
-                    child for child in mother.endVertices()[0].products() if child != daughter
-                ]
-                if other_daughter and other_daughter[0].particleID().pid() == 1000039:
-                    return True
-    return False
-
-# calculate the decay length of a particle from vertices
-def decay_length_from_vertices(production_vertex, decay_vertex):
-    position_diff = decay_vertex.position() - production_vertex.position()
-    decay_length = position_diff.R()
-    return decay_length
-
-# ----------------------------------
-'''
-
 gaudi = GaudiPython.AppMgr()
 tes   = gaudi.evtsvc()
 while processed < evtmax:
@@ -131,21 +106,24 @@ while processed < evtmax:
     gaudi.run(1)
     particles = tes['MC/Particles']
     pid_list = [particle.particleID().pid() for particle in particles]
-    print("Event number: ", processed)
+    #print("Event number: ", processed)
     for particle in particles: 
         if particle.particleID().pid() == 1000015 or particle.particleID().pid() == -1000015:
             mother = particle
             if mother.endVertices() and len(mother.endVertices()) > 0:
-                for daughter in mother.endVertices()[0].products():
-                    if is_valid_decay(mother, daughter):
-                        n_valid_decays += 1
-                        production_vertex = mother.originVertex()
-                        decay_vertex = mother.endVertices()[0]
-                        decay_length = decay_length_from_vertices(production_vertex, decay_vertex)
-                        decay_lengths.append(decay_length)                        
-                        #print("Valid decay found:")
-                        #print("The mother particle is stau with ID", mother.particleID().pid())
-                        #print("The daughter particle is tau with ID", daughter.particleID().pid())
+                # Iterate over all the end vertices of the mother particle
+                for end_vertex in mother.endVertices():
+                    # Analyze the daughter particles of each end vertex
+                    for daughter in end_vertex.products():
+                        if is_valid_decay(mother, daughter):
+                            n_valid_decays += 1
+                            # Call the calculate_decay_length function to get a list of decay lengths
+                            decay_lengths_for_mother = calculate_decay_length(mother)
+                            # Append each decay length to the decay_lengths list
+                            decay_lengths.extend(decay_lengths_for_mother)
+                            #print("Valid decay found:")
+                            #print("The mother particle is stau with ID", mother.particleID().pid())
+                            #print("The daughter particle is tau with ID", daughter.particleID().pid())
                         
 print("Number of valid decays: ", n_valid_decays)        
 
@@ -157,8 +135,9 @@ print("Number of valid decays: ", n_valid_decays)
 ### TODO: Make this work with different mass points
 
 mm_value = re.search(r'(\d+)mm', datafile).group(1) # Extract the number before 'mm' from the input file path
+mass_value = re.search(r'(\d+)GeV', datafile).group(1) # Extract the number before 'GeV' from the input file path
 # Create a folder for the output files if it doesn't exist
-output_folder = f"figs/100GeV_{mm_value}mm"
+output_folder = f"figs/{mass_value}GeV_{mm_value}mm"
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
@@ -166,10 +145,12 @@ if not os.path.exists(output_folder):
 
 # Plot the decay length distribution using matplotlib
 plt.figure()
-plt.hist(decay_lengths, bins=100)
+plt.hist(decay_lengths, bins=50)
 plt.xlabel('Decay Length (m)')
 plt.ylabel('Frequency')
+## Add text with the total number of valid decays on the plot
+plt.text(0.45, 0.70, f"Total number of valid decays: {n_valid_decays}", transform=plt.gca().transAxes)
 plt.title('Stau Decay Length Distribution')
-plt.savefig(f"{output_folder}/DecayLength_{mm_value}mm.pdf")
+plt.savefig(f"{output_folder}/DecayLength_{mass_value}GeV_{mm_value}mm_cut_test.pdf")
 
 pdb.set_trace()        

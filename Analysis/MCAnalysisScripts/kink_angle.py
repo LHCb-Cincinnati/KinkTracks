@@ -26,7 +26,7 @@ from utils import *
 
 
 LHCbApp().Simulation = True
-datafile = '<file_name>.sim'
+datafile = '/afs/cern.ch/work/m/melashri/public/SUSY/MC/Sim10/Gauss_Dev/GaussDev_v55r4/analysis/data/Stau_100GeV_100n_10000mm_ctau_with_Cut.sim'
 IOHelper().inputFiles([
     datafile
 ], clear=True)
